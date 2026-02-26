@@ -289,6 +289,25 @@ body {
   line-height: 1.6;
 }
 
+.topic-summary {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+}
+.topic-summary li {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.15rem 0;
+  opacity: 0.75;
+}
+.topic-summary li::before {
+  content: "→ ";
+  color: var(--accent);
+  opacity: 0.6;
+}
+
 /* --- Page Layout --- */
 .page {
   padding-top: 80px;

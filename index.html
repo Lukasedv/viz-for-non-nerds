@@ -24,6 +24,7 @@
         <li><a href="topic5.html">Topic 5</a></li>
         <li><a href="topic6.html">Topic 6</a></li>
         <li><a href="report.html">Report</a></li>
+        <li><a href="takeaway.html">🎤</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
@@ -33,7 +34,7 @@
   <section class="hero">
     <div class="hero-content">
       <div class="hero-badge">Learning Day Course</div>
-      <h1>Viz for <span class="gradient-text">Non-Nerds</span></h1>
+      <h1 class="hero-title" onmouseenter="this.querySelector('.egg').textContent='Non-Johns'" onmouseleave="this.querySelector('.egg').textContent='Non-Nerds'">Viz for <span class="gradient-text egg">Non-Nerds</span></h1>
       <p>A Data Scientist's Guide to Communicating with Humans</p>
       <a href="topic1.html" class="hero-cta">Start the Course →</a>
     </div>
@@ -49,37 +50,67 @@
       <a href="topic1.html" class="topic-card">
         <div class="topic-number">1</div>
         <h3>Make a Figure for the Generals</h3>
-        <p>If your chart needs 30 seconds to understand, it has failed. Learn ruthless simplification.</p>
+        <p>Ruthless simplification — if your chart needs 30 seconds, it failed.</p>
+        <ul class="topic-summary">
+          <li>Audience-first design</li>
+          <li>Before/after simplification demos</li>
+          <li>Executive dashboard patterns</li>
+        </ul>
       </a>
 
       <a href="topic2.html" class="topic-card">
         <div class="topic-number">2</div>
         <h3>The SWD Framework</h3>
-        <p>Cole Nussbaumer Knaflic's proven 6-step process for clear data communication.</p>
+        <p>Cole Nussbaumer Knaflic's 6-step process for clear data communication.</p>
+        <ul class="topic-summary">
+          <li>Context → Choose → Clutter → Attention → Think → Story</li>
+          <li>Interactive audience selector</li>
+          <li>Step-by-step walkthrough</li>
+        </ul>
       </a>
 
       <a href="topic3.html" class="topic-card">
         <div class="topic-number">3</div>
         <h3>Eliminate Chart Junk</h3>
-        <p>Strip away the noise — shadows, 3D, gridlines — and let your data breathe.</p>
+        <p>Strip away noise and let your data breathe.</p>
+        <ul class="topic-summary">
+          <li>7 toggleable junk elements</li>
+          <li>Live data-ink ratio meter</li>
+          <li>Tufte's principles in action</li>
+        </ul>
       </a>
 
       <a href="topic4.html" class="topic-card">
         <div class="topic-number">4</div>
         <h3>Story-Driven Titles</h3>
         <p>Your title should tell the insight, not just label the axes.</p>
+        <ul class="topic-summary">
+          <li>Descriptive vs. action vs. question titles</li>
+          <li>Live title editor with chart</li>
+          <li>Annotation strategies</li>
+        </ul>
       </a>
 
       <a href="topic5.html" class="topic-card">
         <div class="topic-number">5</div>
         <h3>Non-Negotiable Rules</h3>
-        <p>Zero baselines, 100% pies, intentional color. The rules that can never be broken.</p>
+        <p>Zero baselines, 100% pies, intentional color — rules that can't be broken.</p>
+        <ul class="topic-summary">
+          <li>Interactive Y-axis distortion slider</li>
+          <li>Pie chart breakdown demo</li>
+          <li>Color accessibility & intentionality</li>
+        </ul>
       </a>
 
       <a href="topic6.html" class="topic-card">
         <div class="topic-number">6</div>
         <h3>Narrative Structure</h3>
-        <p>Data is boring without a story arc. Learn to create tension and resolution.</p>
+        <p>Data is boring without a story arc — create tension and resolution.</p>
+        <ul class="topic-summary">
+          <li>Story arc sequencing</li>
+          <li>Wilke's preprint case study</li>
+          <li>Narrative dashboard design</li>
+        </ul>
       </a>
 
     </div>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Report — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html" class="active">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="topic-label">Research Report</span>
+        <h1>How to Visualize Data Better for Non-Nerds</h1>
+        <p class="lead">A comprehensive research report covering principles, frameworks, and resources.</p>
+      </div>
+
+      <!-- Report Layout: 2-column -->
+      <div class="report-layout">
+
+        <!-- Sidebar TOC -->
+        <nav class="report-toc">
+          <h4>Contents</h4>
+          <a href="#executive-summary">Executive Summary</a>
+          <a href="#part-1">Part 1: The Fundamental Mindset Shift</a>
+          <a href="#part-2">Part 2: Choosing the Right Chart Type</a>
+          <a href="#part-3">Part 3: Core Design Principles</a>
+          <a href="#part-4">Part 4: Storytelling with Data</a>
+          <a href="#part-5">Part 5: Common Anti-Patterns</a>
+          <a href="#part-6">Part 6: Practical Workshop Ideas</a>
+          <a href="#part-7">Part 7: Tools &amp; Resources</a>
+          <a href="#part-8">Part 8: Suggested Agenda</a>
+          <a href="#confidence-assessment">Confidence Assessment</a>
+          <a href="#footnotes">Footnotes</a>
+        </nav>
+
+        <!-- Report Content -->
+        <div class="report-content">
+
+          <!-- Executive Summary -->
+          <h2 id="executive-summary">Executive Summary</h2>
+          <p>Data scientists are typically expert at <em>analyzing</em> data but often struggle to <em>communicate</em> it to non-technical audiences. The core challenge is not a lack of tools or skills—it's an empathy gap. Data scientists tend to build visualizations that serve analysis (complex, multi-dimensional, technically precise) rather than communication (simple, story-driven, actionable). This report synthesizes the best thinking from leading practitioners and researchers—Cole Nussbaumer Knaflic, Edward Tufte, Claus Wilke, Alberto Cairo, Lisa Charlotte Rost, and others—into a practical curriculum for a learning day. The key thesis: <strong>making charts "for the generals" requires ruthless simplification, narrative structure, and audience-first design thinking.</strong></p>
+
+          <!-- Part 1 -->
+          <h2 id="part-1">Part 1: The Fundamental Mindset Shift</h2>
+
+          <h3>Analysis ≠ Communication</h3>
+          <p>The single most important concept for a data scientist learning day is this: <strong>the chart you used to discover an insight is almost never the chart you should use to communicate it.</strong><sup><a href="#fn1">1</a></sup></p>
+          <p>Claus Wilke, in <em>Fundamentals of Data Visualization</em>, puts it directly: "Never assume your audience can rapidly process complex visual displays."<sup><a href="#fn1">1</a></sup> He tells a story about working with the U.S. Army, where program managers instructed him: a general should be able to look at each figure and immediately see the point. He calls this principle <strong>"make a figure for the generals."</strong><sup><a href="#fn1">1</a></sup></p>
+          <p>The generals are not stupid—they're busy. They represent <em>every</em> stakeholder a data scientist will present to: executives, product managers, marketing teams, clients. If a visualization requires 30 seconds of study to understand, it has already failed.</p>
+
+          <h3>The "Curse of Knowledge"</h3>
+          <p>Data scientists suffer from a cognitive bias: because <em>they</em> understand the data deeply, they assume the audience does too. Cole Nussbaumer Knaflic's <em>Storytelling with Data</em> framework addresses this head-on with a structured process<sup><a href="#fn2">2</a></sup>:</p>
+          <ol>
+            <li><strong>Understand the context</strong> — Who is your audience? What do they need to know? What action should they take?</li>
+            <li><strong>Choose an appropriate display</strong> — Not the most sophisticated chart, but the most effective one.</li>
+            <li><strong>Eliminate clutter</strong> — Remove everything that doesn't serve understanding.</li>
+            <li><strong>Focus attention</strong> — Use strategic color, size, and position to highlight what matters.</li>
+            <li><strong>Think like a designer</strong> — Apply visual hierarchy and affordances.</li>
+            <li><strong>Tell a story</strong> — Frame the data in a narrative arc.</li>
+          </ol>
+
+          <!-- Part 2 -->
+          <h2 id="part-2">Part 2: Choosing the Right Chart Type</h2>
+
+          <h3>The Decision Framework</h3>
+          <p>The website <a href="https://www.data-to-viz.com/" target="_blank">From Data to Viz</a> provides an excellent interactive decision tree: start with what kind of data you have (numeric, categorical, both, temporal, geographic, network) and it guides you to appropriate chart types<sup><a href="#fn3">3</a></sup>. This is a far better approach than defaulting to whatever chart type you used last.</p>
+
+          <h3>The Chart Type Cheat Sheet</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>What You Want to Show</th>
+                <th>Best Chart Types</th>
+                <th>Avoid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Comparison</strong> across categories</td>
+                <td>Bar chart (horizontal for long labels), lollipop chart</td>
+                <td>Pie chart with &gt;5 slices, 3D bars</td>
+              </tr>
+              <tr>
+                <td><strong>Part-to-whole</strong> relationship</td>
+                <td>Pie (≤5 slices), stacked bar, treemap, waffle chart</td>
+                <td>Pie charts that don't sum to 100%</td>
+              </tr>
+              <tr>
+                <td><strong>Change over time</strong></td>
+                <td>Line chart, area chart</td>
+                <td>Bar charts for time series (usually)</td>
+              </tr>
+              <tr>
+                <td><strong>Distribution</strong></td>
+                <td>Histogram, box plot, violin plot</td>
+                <td>Pie charts, bar charts of means</td>
+              </tr>
+              <tr>
+                <td><strong>Relationship</strong> between variables</td>
+                <td>Scatter plot, bubble chart</td>
+                <td>Line charts (implies order)</td>
+              </tr>
+              <tr>
+                <td><strong>Composition</strong> over time</td>
+                <td>Stacked area, stacked bar</td>
+                <td>Too many categories stacked</td>
+              </tr>
+              <tr>
+                <td><strong>Geographic</strong> patterns</td>
+                <td>Choropleth map, bubble map</td>
+                <td>Over-decorated maps</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>When NOT to Use a Chart</h3>
+          <p>Sometimes a simple table, a single number, or even a sentence is the best visualization<sup><a href="#fn4">4</a></sup>. As the <em>Hands-On Data Visualization</em> book states: "just because data <em>can</em> be made into a chart does not necessarily mean that it <em>should</em> be turned into one."<sup><a href="#fn4">4</a></sup> Before creating a chart, ask: <strong>Does a visualized data pattern really matter to your story?</strong></p>
+
+          <!-- Part 3 -->
+          <h2 id="part-3">Part 3: Core Design Principles</h2>
+
+          <h3>3.1 Eliminate Chart Junk (Maximize the Data-Ink Ratio)</h3>
+          <p>Edward Tufte's foundational concept from <em>The Visual Display of Quantitative Information</em> (1983): <strong>data-ink</strong> is the non-erasable core of the graphic—the ink arranged in response to variation in the numbers represented. Everything else is potentially "chart junk."<sup><a href="#fn5">5</a></sup></p>
+          <p>Dark Horse Analytics illustrates this brilliantly with their "Data Looks Better Naked" series<sup><a href="#fn5">5</a></sup>: start with a cluttered chart and progressively remove elements—3D effects, gridlines, heavy borders, background colors, redundant labels—until only the data remains.</p>
+          <p><strong>Practical rules:</strong></p>
+          <ul>
+            <li>Start with a white background; justify every element you add<sup><a href="#fn4">4</a></sup></li>
+            <li>Remove 3D effects, shadows, and gradients—<em>always</em><sup><a href="#fn4">4</a></sup></li>
+            <li>Reduce or lighten gridlines (or remove them entirely)</li>
+            <li>Label data directly instead of using legends when possible</li>
+            <li>Use commas as thousands separators (<code>1,000,000</code> not <code>1000000</code>)<sup><a href="#fn4">4</a></sup></li>
+          </ul>
+          <p>As Antoine de Saint-Exupéry said: <em>"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."</em><sup><a href="#fn5">5</a></sup></p>
+
+          <h3>3.2 Use Titles That Tell the Story</h3>
+          <p>A title is perhaps the most important element of any chart<sup><a href="#fn4">4</a></sup>. There are two approaches:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Example</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Story-driven title</strong></td>
+                <td>"Pandemic Hits Black and Latino Population Hardest"</td>
+                <td>Executive presentations, stakeholder reports</td>
+              </tr>
+              <tr>
+                <td><strong>Technical/descriptive title</strong></td>
+                <td>"Covid-19 Deaths by Race in NYC, Spring 2020"</td>
+                <td>Technical reports, academic papers</td>
+              </tr>
+              <tr>
+                <td><strong>Hybrid</strong></td>
+                <td>"Pandemic Hits Black and Latino Population Hardest: Covid-19 Deaths by Race in NYC, Spring 2020"</td>
+                <td>Best of both worlds</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>For non-technical audiences, always prefer story-driven titles.</strong> The title should convey the insight <em>before</em> the audience even looks at the data. If the subtitle adds technical detail, make it visually subordinate (smaller font, lighter color)<sup><a href="#fn4">4</a></sup>.</p>
+
+          <h3>3.3 Bar Charts Must Start at Zero</h3>
+          <p>This is one of the <em>non-negotiable</em> rules of data visualization<sup><a href="#fn4">4</a></sup><sup><a href="#fn6">6</a></sup>. Bar and column charts encode value through <strong>length</strong>. If the axis doesn't start at zero, a bar twice as tall does not represent twice the value—and the audience will be misled.</p>
+          <p>Claus Wilke demonstrates this powerfully with Hawaiian county income data: a bar chart starting at $50,000 makes one county look devastatingly poor, while a zero-baseline chart reveals the differences are modest<sup><a href="#fn6">6</a></sup>.</p>
+          <p><strong>Important exception:</strong> Line charts do <em>not</em> require a zero baseline. Line charts encode value through <strong>position and angle</strong>, not length. According to Alberto Cairo, starting a line chart at a non-zero value does not necessarily distort its meaning—and in fact, forcing a zero baseline can flatten important variation<sup><a href="#fn4">4</a></sup><sup><a href="#fn7">7</a></sup>.</p>
+
+          <h3>3.4 Be Careful with Color</h3>
+          <p>Lisa Charlotte Rost's comprehensive guide on the Datawrapper blog is the gold standard here<sup><a href="#fn8">8</a></sup>. Key principles:</p>
+          <ol>
+            <li><strong>Monochromatic often suffices</strong> — Don't add color unless it encodes data<sup><a href="#fn4">4</a></sup></li>
+            <li><strong>Grey is the most important color in data viz</strong> — Use it to push non-essential elements to the background, and use a bold color only for the data you want to highlight<sup><a href="#fn8">8</a></sup></li>
+            <li><strong>Use "earthier" tones</strong> — Olive green instead of neon green, navy instead of bright blue<sup><a href="#fn4">4</a></sup></li>
+            <li><strong>Check for color blindness</strong> — Avoid red-green combinations. Use <a href="https://www.colororacle.org/" target="_blank">Color Oracle</a> to simulate<sup><a href="#fn4">4</a></sup></li>
+            <li><strong>Check for meaning conflicts</strong> — Don't use red for profit or green for death<sup><a href="#fn4">4</a></sup></li>
+            <li><strong>Check grayscale printing</strong> — Will the chart still be readable in black and white?<sup><a href="#fn4">4</a></sup></li>
+          </ol>
+          <p>For choosing palettes:</p>
+          <ul>
+            <li><strong>Continuous data:</strong> Use <a href="http://colorbrewer2.org/" target="_blank">ColorBrewer 2.0</a> or <a href="https://vis4.net/palettes/" target="_blank">Chroma.js Color Palette Helper</a><sup><a href="#fn8">8</a></sup></li>
+            <li><strong>Categorical data:</strong> Use complementary colors (opposites on the color wheel) or analogous colors (neighbors)<sup><a href="#fn4">4</a></sup></li>
+          </ul>
+
+          <h3>3.5 Don't Make People Turn Their Heads</h3>
+          <p>When column chart labels are too long, rotate the chart 90° to make a horizontal bar chart instead of rotating the labels<sup><a href="#fn4">4</a></sup>. Horizontal labels are dramatically easier to read.</p>
+
+          <h3>3.6 Arrange Elements Logically</h3>
+          <p>Sort bars by value (for comparisons) or alphabetically (for lookup), not randomly<sup><a href="#fn4">4</a></sup>. The only exception: time-based data, which must follow chronological order.</p>
+
+          <h3>3.7 Do Not Overload</h3>
+          <ul>
+            <li>Use natural axis increments: [0, 20, 40, 60, 80, 100] not [0, 17, 34, 51, 68, 85]<sup><a href="#fn4">4</a></sup></li>
+            <li>Limit line charts to ~4 lines before the chart becomes unreadable</li>
+            <li>If you have a complex figure with 12 subplots, show a single representative subplot first, explain it, then reveal the full grid<sup><a href="#fn1">1</a></sup></li>
+          </ul>
+
+          <!-- Part 4 -->
+          <h2 id="part-4">Part 4: Storytelling with Data</h2>
+
+          <h3>The Story Arc</h3>
+          <p>Claus Wilke argues that every presentation needs a story arc—a set of observations presented in a specific order to create an emotional reaction through tension and resolution<sup><a href="#fn1">1</a></sup>. Standard formats include:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Format</th>
+                <th>Structure</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Opening–Challenge–Action–Resolution</strong></td>
+                <td>Build tension, resolve it</td>
+                <td>"Our sales were growing. Then COVID hit. Here's what we did. It worked."</td>
+              </tr>
+              <tr>
+                <td><strong>Lead–Development</strong></td>
+                <td>Key insight first, details after</td>
+                <td>Newspaper-style; give away the punchline in the title</td>
+              </tr>
+              <tr>
+                <td><strong>Action–Background–Development–Climax–Ending</strong></td>
+                <td>Hook first, context after</td>
+                <td>"We're losing 40% of signups at checkout. Let me explain why..."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>One Figure Rarely Tells the Whole Story</h3>
+          <p>A single static visualization will rarely convey the entire narrative. Wilke demonstrates this with a preprint submission story<sup><a href="#fn1">1</a></sup>:</p>
+          <ul>
+            <li><strong>Figure 1</strong> (Challenge): q-bio submissions plateaued in 2013. Why?</li>
+            <li><strong>Figure 2</strong> (Resolution): bioRxiv launched in 2013 and absorbed the growth.</li>
+          </ul>
+          <p>He deliberately used two figures even though the second contains all data from the first, because the tension-resolution arc is more powerful when split across charts.</p>
+
+          <h3>The SWD Process</h3>
+          <p>Cole Nussbaumer Knaflic's <em>Storytelling with Data</em> (SWD) process, refined over thousands of real-world business communications, breaks down into six lessons<sup><a href="#fn2">2</a></sup>:</p>
+          <ol>
+            <li><strong>Understand the context</strong> — Complete a "Big Idea" worksheet: What is the single most important thing you want your audience to know?</li>
+            <li><strong>Choose an effective visual</strong> — Simple, familiar chart types that your audience already knows how to read</li>
+            <li><strong>Eliminate clutter</strong> — Every pixel must earn its place</li>
+            <li><strong>Focus attention where you want it</strong> — Pre-attentive attributes (color, size, position) guide the eye in milliseconds</li>
+            <li><strong>Think like a designer</strong> — Visual hierarchy, alignment, white space</li>
+            <li><strong>Tell a story</strong> — A beginning (context), middle (tension/insight), and end (call to action)</li>
+          </ol>
+          <p>Her new book <em>Before &amp; After</em> provides 20 real-world case studies of this process applied to actual business communications<sup><a href="#fn2">2</a></sup>.</p>
+
+          <!-- Part 5 -->
+          <h2 id="part-5">Part 5: Common Anti-Patterns (What Data Scientists Get Wrong)</h2>
+
+          <h3>Anti-Pattern 1: The Complexity Flex</h3>
+          <p><strong>Symptom:</strong> Using a scatter plot with 5 encoded dimensions (x, y, color, size, shape) when a simple bar chart would suffice.</p>
+          <p>Wilke provides a devastating example: a visualization of flight arrival delays encoding airline, airport, distance, delay, and flight count simultaneously. A simple bar chart of mean delays by airline communicates the insight in seconds<sup><a href="#fn1">1</a></sup>.</p>
+          <blockquote>"When you're trying to show too much data at once you may end up not showing anything."<sup><a href="#fn1">1</a></sup></blockquote>
+
+          <h3>Anti-Pattern 2: The Default-itis</h3>
+          <p><strong>Symptom:</strong> Using whatever matplotlib/seaborn/ggplot defaults produce, without customization.</p>
+          <p>Defaults are designed for analysis, not communication. At minimum:</p>
+          <ul>
+            <li>Add a descriptive title (not "Figure 1")</li>
+            <li>Remove the legend if you can label directly</li>
+            <li>Reduce axis clutter</li>
+            <li>Choose intentional colors</li>
+          </ul>
+
+          <h3>Anti-Pattern 3: The Pie Chart Crime</h3>
+          <p><strong>Symptom:</strong> Pie charts with 12 slices, or slices that don't sum to 100%.</p>
+          <p>The <em>one</em> universally agreed-upon rule in data visualization: pie charts represent 100% of a quantity. If slices don't sum to 100%, it is, as <em>Hands-On Data Visualization</em> puts it, "a crime."<sup><a href="#fn4">4</a></sup> More than 5 slices? Use a bar chart instead<sup><a href="#fn4">4</a></sup>.</p>
+
+          <h3>Anti-Pattern 4: The Correlation-as-Causation Chart</h3>
+          <p><strong>Symptom:</strong> Presenting a time-series overlay of two variables with the implicit message that one caused the other, without controlling for confounders.</p>
+
+          <h3>Anti-Pattern 5: The Missing Context</h3>
+          <p><strong>Symptom:</strong> Showing a number without comparison. "We had 10,000 signups last month." Is that good? Bad? Compared to what?</p>
+          <p>Always provide context: prior period, benchmark, goal, industry average.</p>
+
+          <h3>Anti-Pattern 6: The Truncated Axis</h3>
+          <p><strong>Symptom:</strong> Starting a bar chart at a non-zero value to exaggerate differences.</p>
+          <p>This is commonly used (intentionally or not) to exaggerate differences in opinion polls, election results, and financial reporting<sup><a href="#fn4">4</a></sup><sup><a href="#fn6">6</a></sup>.</p>
+
+          <!-- Part 6 -->
+          <h2 id="part-6">Part 6: Practical Workshop Ideas for the Learning Day</h2>
+
+          <h3>Exercise 1: The Before &amp; After Makeover</h3>
+          <p>Give the team a deliberately bad chart (chart junk, truncated axes, rainbow colors, 3D pie chart) and have them redesign it following the principles above. This is the core exercise in Cole Nussbaumer Knaflic's <em>Let's Practice!</em> workbook<sup><a href="#fn2">2</a></sup>.</p>
+
+          <h3>Exercise 2: The "Big Idea" Worksheet</h3>
+          <p>Before any visualization: write one sentence that captures the insight. If you can't do this, you're not ready to make a chart.</p>
+          <p>Template: <strong>[Subject] should [recommended action] because [supporting insight from data].</strong></p>
+
+          <h3>Exercise 3: The 5-Second Test</h3>
+          <p>Show a chart to a colleague for exactly 5 seconds, then hide it. Ask: "What was the main point?" If they can't answer, the chart needs work.</p>
+
+          <h3>Exercise 4: Chart Type Speed Dating</h3>
+          <p>Present 10 datasets and have teams race to choose the best chart type using the <a href="https://www.data-to-viz.com/" target="_blank">From Data to Viz</a> decision tree<sup><a href="#fn3">3</a></sup>.</p>
+
+          <h3>Exercise 5: Color Blindness Audit</h3>
+          <p>Have the team run their recent dashboards/reports through <a href="https://www.colororacle.org/" target="_blank">Color Oracle</a> and identify accessibility issues.</p>
+
+          <h3>Exercise 6: "Make a Figure for the Generals"</h3>
+          <p>Take a complex exploratory visualization from a recent project and simplify it to the point where a non-technical executive could understand it in 10 seconds.</p>
+
+          <!-- Part 7 -->
+          <h2 id="part-7">Part 7: Recommended Tools &amp; Resources</h2>
+
+          <h3>Books (Ranked by Relevance to This Topic)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Why It Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><em>Storytelling with Data</em></td>
+                <td>Cole Nussbaumer Knaflic</td>
+                <td>The definitive practical guide for business data communication<sup><a href="#fn2">2</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>Fundamentals of Data Visualization</em></td>
+                <td>Claus O. Wilke</td>
+                <td>Comprehensive, free online at <a href="https://clauswilke.com/dataviz/" target="_blank">clauswilke.com/dataviz</a><sup><a href="#fn1">1</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>Hands-On Data Visualization</em></td>
+                <td>Jack Dougherty &amp; Ilya Ilyankou</td>
+                <td>Free online at <a href="https://handsondataviz.org" target="_blank">handsondataviz.org</a>, excellent for beginners<sup><a href="#fn4">4</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>The Visual Display of Quantitative Information</em></td>
+                <td>Edward Tufte</td>
+                <td>The classic—foundational theory (data-ink ratio, chart junk)<sup><a href="#fn5">5</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>How Charts Lie</em></td>
+                <td>Alberto Cairo</td>
+                <td>How to read and create honest visualizations<sup><a href="#fn7">7</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>Before &amp; After</em></td>
+                <td>Cole Nussbaumer Knaflic</td>
+                <td>20 real-world makeover case studies (newest, 2025)<sup><a href="#fn2">2</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>Let's Practice!</em></td>
+                <td>Cole Nussbaumer Knaflic</td>
+                <td>Hands-on workbook with exercises<sup><a href="#fn2">2</a></sup></td>
+              </tr>
+              <tr>
+                <td><em>Storytelling with You</em></td>
+                <td>Cole Nussbaumer Knaflic</td>
+                <td>For presentation delivery skills<sup><a href="#fn2">2</a></sup></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Online Resources</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>URL</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>From Data to Viz</td>
+                <td><a href="https://www.data-to-viz.com/" target="_blank">data-to-viz.com</a></td>
+                <td>Interactive chart chooser decision tree<sup><a href="#fn3">3</a></sup></td>
+              </tr>
+              <tr>
+                <td>Datawrapper Academy</td>
+                <td><a href="https://academy.datawrapper.de" target="_blank">academy.datawrapper.de</a></td>
+                <td>Excellent "What to consider" guides for every chart type<sup><a href="#fn9">9</a></sup></td>
+              </tr>
+              <tr>
+                <td>Your Friendly Guide to Colors</td>
+                <td><a href="https://blog.datawrapper.de/colorguide/" target="_blank">blog.datawrapper.de/colorguide</a></td>
+                <td>The best color guide for data visualization<sup><a href="#fn8">8</a></sup></td>
+              </tr>
+              <tr>
+                <td>Data Looks Better Naked</td>
+                <td><a href="https://www.darkhorseanalytics.com/blog/data-looks-better-naked" target="_blank">darkhorseanalytics.com</a></td>
+                <td>Animated GIF of progressive chart decluttering<sup><a href="#fn5">5</a></sup></td>
+              </tr>
+              <tr>
+                <td>ColorBrewer 2.0</td>
+                <td><a href="http://colorbrewer2.org/" target="_blank">colorbrewer2.org</a></td>
+                <td>Color palette generator for maps &amp; charts<sup><a href="#fn8">8</a></sup></td>
+              </tr>
+              <tr>
+                <td>Color Oracle</td>
+                <td><a href="https://www.colororacle.org/" target="_blank">colororacle.org</a></td>
+                <td>Color blindness simulator<sup><a href="#fn4">4</a></sup></td>
+              </tr>
+              <tr>
+                <td>r/dataisbeautiful</td>
+                <td><a href="https://www.reddit.com/r/dataisbeautiful/" target="_blank">reddit.com/r/dataisbeautiful</a></td>
+                <td>Good examples<sup><a href="#fn4">4</a></sup></td>
+              </tr>
+              <tr>
+                <td>r/dataisugly</td>
+                <td><a href="https://www.reddit.com/r/dataisugly/" target="_blank">reddit.com/r/dataisugly</a></td>
+                <td>Bad examples (equally educational)<sup><a href="#fn4">4</a></sup></td>
+              </tr>
+              <tr>
+                <td>What to Consider When Considering Data Vis Rules</td>
+                <td><a href="https://lisacharlotterost.de/datavisrules" target="_blank">lisacharlotterost.de/datavisrules</a></td>
+                <td>When and why to break rules<sup><a href="#fn9">9</a></sup></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Python/R Libraries for Publication-Quality Charts</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Library</th>
+                <th>Language</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>matplotlib</code> + custom styling</td>
+                <td>Python</td>
+                <td>Full control, publication quality</td>
+              </tr>
+              <tr>
+                <td><code>seaborn</code></td>
+                <td>Python</td>
+                <td>Statistical visualization</td>
+              </tr>
+              <tr>
+                <td><code>plotly</code></td>
+                <td>Python/R/JS</td>
+                <td>Interactive dashboards</td>
+              </tr>
+              <tr>
+                <td><code>altair</code></td>
+                <td>Python</td>
+                <td>Declarative, grammar-of-graphics</td>
+              </tr>
+              <tr>
+                <td><code>ggplot2</code></td>
+                <td>R</td>
+                <td>The gold standard for static visualizations</td>
+              </tr>
+              <tr>
+                <td><code>Datawrapper</code></td>
+                <td>Web tool</td>
+                <td>No-code, beautiful defaults, great for reports</td>
+              </tr>
+              <tr>
+                <td><code>Flourish</code></td>
+                <td>Web tool</td>
+                <td>Animated, narrative-driven visualizations</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Part 8 -->
+          <h2 id="part-8">Part 8: A Suggested Learning Day Agenda</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Session</th>
+                <th>Format</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09:00–09:30</td>
+                <td><strong>The Empathy Gap</strong>: Why our charts confuse non-technical audiences</td>
+                <td>Presentation + bad chart gallery</td>
+              </tr>
+              <tr>
+                <td>09:30–10:15</td>
+                <td><strong>The SWD Framework</strong>: Context → Chart → Declutter → Focus → Design → Story</td>
+                <td>Presentation with live examples</td>
+              </tr>
+              <tr>
+                <td>10:15–10:30</td>
+                <td>Break</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>10:30–11:15</td>
+                <td><strong>Exercise: Before &amp; After Makeover</strong> — transform a bad chart</td>
+                <td>Hands-on workshop (pairs)</td>
+              </tr>
+              <tr>
+                <td>11:15–12:00</td>
+                <td><strong>Chart Chooser Speed Dating</strong> + From Data to Viz decision tree</td>
+                <td>Interactive exercise (teams)</td>
+              </tr>
+              <tr>
+                <td>12:00–13:00</td>
+                <td>Lunch</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>13:00–13:45</td>
+                <td><strong>Color, Accessibility &amp; Design</strong> — practical rules with Color Oracle</td>
+                <td>Presentation + audit exercise</td>
+              </tr>
+              <tr>
+                <td>13:45–14:30</td>
+                <td><strong>Storytelling</strong>: Narrative arc, "Big Idea" worksheet, 5-second test</td>
+                <td>Presentation + exercise</td>
+              </tr>
+              <tr>
+                <td>14:30–14:45</td>
+                <td>Break</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>14:45–15:45</td>
+                <td><strong>"Make a Figure for the Generals"</strong>: Bring your own project visualization and simplify it</td>
+                <td>Hands-on workshop (individual)</td>
+              </tr>
+              <tr>
+                <td>15:45–16:15</td>
+                <td><strong>Show &amp; Tell</strong>: Present your before/after to the group</td>
+                <td>Group critique</td>
+              </tr>
+              <tr>
+                <td>16:15–16:30</td>
+                <td><strong>Wrap-up &amp; Resources</strong>: Books, bookmarks, cheat sheets</td>
+                <td>Discussion</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Confidence Assessment -->
+          <h2 id="confidence-assessment">Confidence Assessment</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Claim</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Core design principles (zero-baseline, chart junk, color)</td>
+                <td><strong>Very high</strong> — These are well-established, widely cited principles with broad consensus</td>
+              </tr>
+              <tr>
+                <td>Cole Nussbaumer Knaflic's SWD framework</td>
+                <td><strong>Very high</strong> — Directly from her published books and website</td>
+              </tr>
+              <tr>
+                <td>Claus Wilke's "figure for the generals" concept</td>
+                <td><strong>Very high</strong> — Directly from his free online book</td>
+              </tr>
+              <tr>
+                <td>Lisa Charlotte Rost's color and rules guidance</td>
+                <td><strong>Very high</strong> — Directly from her published blog posts</td>
+              </tr>
+              <tr>
+                <td>From Data to Viz decision tree</td>
+                <td><strong>Very high</strong> — Reviewed the actual website</td>
+              </tr>
+              <tr>
+                <td>Workshop exercise effectiveness</td>
+                <td><strong>High</strong> — Based on common training patterns from SWD workshops and academic courses</td>
+              </tr>
+              <tr>
+                <td>Suggested agenda timing</td>
+                <td><strong>Medium</strong> — This is a reasonable template but should be adapted to the team's level and interests</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Footnotes -->
+          <h2 id="footnotes">Footnotes</h2>
+          <ol>
+            <li id="fn1">Claus O. Wilke, <em>Fundamentals of Data Visualization</em>, O'Reilly Media. Chapter 29: "Telling a story and making a point." Free online at <a href="https://clauswilke.com/dataviz/telling-a-story.html" target="_blank">clauswilke.com/dataviz/telling-a-story.html</a>. Also Chapter 17 on the principle of proportional ink: <a href="https://clauswilke.com/dataviz/proportional-ink.html" target="_blank">clauswilke.com/dataviz/proportional-ink.html</a>.</li>
+            <li id="fn2">Cole Nussbaumer Knaflic, <em>Storytelling with Data: A Data Visualization Guide for Business Professionals</em>, Wiley, 2015. Additional books (<em>Let's Practice!</em>, <em>Storytelling with You</em>, <em>Before &amp; After</em>) listed at <a href="https://www.storytellingwithdata.com/books" target="_blank">storytellingwithdata.com/books</a>.</li>
+            <li id="fn3">Yan Holtz, <em>From Data to Viz</em>, interactive chart decision tree. <a href="https://www.data-to-viz.com/" target="_blank">data-to-viz.com</a>. GitHub repository: <a href="https://github.com/holtzy/data_to_viz" target="_blank">github.com/holtzy/data_to_viz</a>.</li>
+            <li id="fn4">Jack Dougherty and Ilya Ilyankou, <em>Hands-On Data Visualization: Interactive Storytelling from Spreadsheets to Code</em>, O'Reilly Media, 2021. Chapter 6: "Chart Design." Free online at <a href="https://handsondataviz.org/chart-design.html" target="_blank">handsondataviz.org/chart-design.html</a>. GitHub: <a href="https://github.com/HandsOnDataViz/book" target="_blank">github.com/HandsOnDataViz/book</a>.</li>
+            <li id="fn5">Edward Tufte, <em>The Visual Display of Quantitative Information</em>, Graphics Press, 1983. Concept of "data-ink ratio" and "chart junk." Dark Horse Analytics animated illustration: <a href="https://www.darkhorseanalytics.com/blog/data-looks-better-naked" target="_blank">darkhorseanalytics.com/blog/data-looks-better-naked</a>.</li>
+            <li id="fn6">Claus O. Wilke, <em>Fundamentals of Data Visualization</em>, Chapter 17: "The principle of proportional ink." <a href="https://clauswilke.com/dataviz/proportional-ink.html" target="_blank">clauswilke.com/dataviz/proportional-ink.html</a>. Originally coined by Bergstrom and West (2016).</li>
+            <li id="fn7">Alberto Cairo, <em>How Charts Lie: Getting Smarter about Visual Information</em>, W.W. Norton, 2019. Referenced in <em>Hands-On Data Visualization</em> regarding line chart baselines (p. 61).</li>
+            <li id="fn8">Lisa Charlotte Rost, "Your Friendly Guide to Colors in Data Visualisation," Datawrapper Blog, July 31, 2018. <a href="https://blog.datawrapper.de/colorguide/" target="_blank">blog.datawrapper.de/colorguide</a>. Also: "How to Pick More Beautiful Colors for Your Data Visualizations," Datawrapper Blog, September 4, 2020. <a href="https://blog.datawrapper.de/beautifulcolors/index.html" target="_blank">blog.datawrapper.de/beautifulcolors</a>.</li>
+            <li id="fn9">Lisa Charlotte Rost, "What to Consider When Considering Data Vis Rules," November 27, 2020. <a href="https://lisacharlotterost.de/datavisrules" target="_blank">lisacharlotterost.de/datavisrules</a>. Datawrapper Academy "What to consider" series at <a href="https://academy.datawrapper.de" target="_blank">academy.datawrapper.de</a>.</li>
+            <li id="fn10">Scott Berinato, "Visualizations That Really Work," <em>Harvard Business Review</em>, June 2016. <a href="https://hbr.org/2016/06/visualizations-that-really-work" target="_blank">hbr.org/2016/06/visualizations-that-really-work</a>.</li>
+          </ol>
+
+          <!-- Page Navigation -->
+          <div class="page-nav">
+            <a href="topic6.html">
+              <span class="nav-direction">← Previous</span>
+              <span class="nav-title">Topic 6: Narrative Structure</span>
+            </a>
+            <a href="index.html" class="next">
+              <span class="nav-direction">Course Overview →</span>
+              <span class="nav-title">← Back to Course Overview</span>
+            </a>
+          </div>
+
+        </div><!-- /report-content -->
+      </div><!-- /report-layout -->
+    </div><!-- /container -->
+  </div><!-- /page -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>📊 Viz for Non-Nerds — A learning day course on data visualization for non-technical audiences.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

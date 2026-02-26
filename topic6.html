@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 6: Narrative Structure — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html" class="active">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 6</span>
+          <h1>Narrative Structure</h1>
+          <p class="lead">Data is boring without a story. Learn to create tension and resolution with your visualizations.</p>
+          <blockquote>"We get excited when we hear a good story, and we get bored when there is none. If we don't provide a clear story, our audience will make one up." — Claus Wilke</blockquote>
+        </div>
+
+        <!-- Section 1: What is a Data Story? -->
+        <section class="lesson-section fade-in">
+          <h2>📖 What is a Data Story?</h2>
+          <p>A story is a set of observations presented in a specific order to create an emotional reaction through tension and resolution. Data without a story arc is just a table. The difference between a report and a presentation is <strong>narrative</strong>.</p>
+          <p>There are three proven story formats for data presentations:</p>
+
+          <div class="story-formats" style="display:grid; gap:1rem; margin:1.5rem 0;">
+            <div class="chart-container" style="border-left:4px solid var(--accent);">
+              <h3 style="margin-bottom:0.5rem;">1. Opening → Challenge → Action → Resolution</h3>
+              <p style="color:var(--text-secondary); margin:0; font-size:0.9rem;">"Our sales were growing. Then COVID hit. Here's what we did. And it worked."</p>
+              <p style="color:var(--text-muted); margin:0.5rem 0 0; font-size:0.8rem;">The classic arc. Sets context, introduces conflict, shows response, delivers payoff.</p>
+            </div>
+            <div class="chart-container" style="border-left:4px solid var(--success);">
+              <h3 style="margin-bottom:0.5rem;">2. Lead → Development</h3>
+              <p style="color:var(--text-secondary); margin:0; font-size:0.9rem;">"Revenue grew 40%. Here's why."</p>
+              <p style="color:var(--text-muted); margin:0.5rem 0 0; font-size:0.8rem;">Give away the punchline first. Best for busy executives who want the answer immediately.</p>
+            </div>
+            <div class="chart-container" style="border-left:4px solid var(--warning);">
+              <h3 style="margin-bottom:0.5rem;">3. Action → Background → Climax → Ending</h3>
+              <p style="color:var(--text-secondary); margin:0; font-size:0.9rem;">"We're losing 40% of signups at checkout..."</p>
+              <p style="color:var(--text-muted); margin:0.5rem 0 0; font-size:0.8rem;">Hook first. Open with action to grab attention, then fill in context and build to the climax.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Interactive Story Arc Demo -->
+        <section class="lesson-section fade-in">
+          <h2>🎬 Interactive Story Arc: The Preprint Story</h2>
+          <p>Experience a data story told in four steps. Click through to see how tension builds and resolves — just like in a great presentation.</p>
+
+          <div id="preprint-story" class="story-sequence">
+            <!-- Step 1: Opening -->
+            <div class="story-step active">
+              <div class="chart-container" style="text-align:center; padding:3rem 2rem;">
+                <span style="font-size:2.5rem; display:block; margin-bottom:1rem;">📄</span>
+                <h3 style="font-size:1.25rem; margin-bottom:0.75rem;">Opening: What Are Preprints?</h3>
+                <p style="color:var(--text-secondary); max-width:500px; margin:0 auto; font-size:0.95rem;">Scientific preprints are manuscripts shared before peer review. In the 2000s, physicists built <strong style="color:var(--accent-light);">arXiv.org</strong> for this purpose. Biologists eventually got their own section: <strong style="color:var(--accent-light);">q-bio</strong>.</p>
+              </div>
+            </div>
+
+            <!-- Step 2: Challenge -->
+            <div class="story-step">
+              <div class="chart-container">
+                <div class="chart-title">Monthly Submissions to arXiv q-bio</div>
+                <div class="chart-subtitle">Something happened in late 2013...</div>
+                <div class="chart-wrapper"><canvas id="chart-qbio-growth"></canvas></div>
+              </div>
+            </div>
+
+            <!-- Step 3: Action -->
+            <div class="story-step">
+              <div class="chart-container" style="text-align:center; padding:3rem 2rem;">
+                <span style="font-size:2.5rem; display:block; margin-bottom:1rem;">🚀</span>
+                <h3 style="font-size:1.25rem; margin-bottom:0.75rem;">Action: bioRxiv Launches</h3>
+                <p style="color:var(--text-secondary); max-width:520px; margin:0 auto; font-size:0.95rem;">In November 2013, <strong style="color:var(--success);">Cold Spring Harbor Laboratory</strong> launched <strong style="color:var(--success);">bioRxiv</strong> — a biology-specific preprint server backed by a respected publisher. Unlike arXiv's physics-first culture, bioRxiv was designed for biologists from day one.</p>
+              </div>
+            </div>
+
+            <!-- Step 4: Resolution -->
+            <div class="story-step">
+              <div class="chart-container">
+                <div class="chart-title">bioRxiv Absorbed the Biology Preprint Growth</div>
+                <div class="chart-subtitle">q-bio flatlined while bioRxiv took off</div>
+                <div class="chart-wrapper"><canvas id="chart-preprint-resolution"></canvas></div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="story-controls">
+              <button class="story-prev" disabled>← Previous</button>
+              <button class="story-next">Next →</button>
+            </div>
+            <div class="story-progress">
+              <div class="story-dot active"></div>
+              <div class="story-dot"></div>
+              <div class="story-dot"></div>
+              <div class="story-dot"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: One Chart Per Point -->
+        <section class="lesson-section fade-in">
+          <h2>🎯 The "One Chart Per Point" Principle</h2>
+          <p>A single chart rarely tells the whole story. When you cram everything into one figure, you force your audience to do the analytical work. Instead, use multiple simple charts — each making <strong>one point</strong>.</p>
+
+          <div class="before-after">
+            <div class="ba-toggle">
+              <button class="ba-before active" data-target="before">❌ Overloaded</button>
+              <button class="ba-after" data-target="after">✅ Sequential</button>
+            </div>
+            <div class="ba-chart active" data-view="before">
+              <div class="chart-container">
+                <div class="chart-title">Everything Crammed Into One Chart</div>
+                <div class="chart-subtitle">Too many stories competing for attention</div>
+                <div class="chart-wrapper"><canvas id="chart-overloaded"></canvas></div>
+              </div>
+            </div>
+            <div class="ba-chart" data-view="after">
+              <div class="chart-container" style="margin-bottom:1rem;">
+                <div class="chart-title">Chart 1: The Problem — q-bio Growth Stalls</div>
+                <div class="chart-subtitle">Focus: exponential growth hitting a wall</div>
+                <div class="chart-wrapper"><canvas id="chart-sequential-1"></canvas></div>
+              </div>
+              <div class="chart-container">
+                <div class="chart-title">Chart 2: The Solution — bioRxiv Takes Over</div>
+                <div class="chart-subtitle">Focus: the new platform absorbs growth</div>
+                <div class="chart-wrapper"><canvas id="chart-sequential-2"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Story Arc Templates -->
+        <section class="lesson-section fade-in">
+          <h2>📋 Story Arc Templates for Data Scientists</h2>
+          <p>Don't start from scratch every time. Use these templates as scaffolding for your next presentation.</p>
+
+          <div class="steps">
+            <button class="step-btn active" data-step="template-experiment"><span class="step-num">1</span> The Experiment</button>
+            <button class="step-btn" data-step="template-review"><span class="step-num">2</span> Business Review</button>
+            <button class="step-btn" data-step="template-deepdive"><span class="step-num">3</span> The Deep Dive</button>
+          </div>
+
+          <div id="template-experiment" class="step-content active">
+            <div class="chart-container">
+              <h3>🔬 The Experiment</h3>
+              <ol style="color:var(--text-secondary); margin:1rem 0 0 1.5rem;">
+                <li><strong style="color:var(--text-primary);">Hypothesis</strong> — Set context: what did you expect?</li>
+                <li><strong style="color:var(--text-primary);">What we measured</strong> — Methodology chart (show your approach)</li>
+                <li><strong style="color:var(--text-primary);">What we found</strong> — Results chart (the data speaks)</li>
+                <li><strong style="color:var(--text-primary);">What it means</strong> — Insight chart (so what?)</li>
+              </ol>
+              <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;">Best for: A/B tests, model evaluations, research findings.</p>
+            </div>
+          </div>
+
+          <div id="template-review" class="step-content">
+            <div class="chart-container">
+              <h3>📊 The Business Review</h3>
+              <ol style="color:var(--text-secondary); margin:1rem 0 0 1.5rem;">
+                <li><strong style="color:var(--text-primary);">Where we are</strong> — KPI dashboard (current state)</li>
+                <li><strong style="color:var(--text-primary);">What changed</strong> — Trend chart (movement over time)</li>
+                <li><strong style="color:var(--text-primary);">Why it changed</strong> — Analysis chart (root cause)</li>
+                <li><strong style="color:var(--text-primary);">What we should do</strong> — Recommendation (action items)</li>
+              </ol>
+              <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;">Best for: Quarterly reviews, stakeholder updates, board presentations.</p>
+            </div>
+          </div>
+
+          <div id="template-deepdive" class="step-content">
+            <div class="chart-container">
+              <h3>🔍 The Deep Dive</h3>
+              <ol style="color:var(--text-secondary); margin:1rem 0 0 1.5rem;">
+                <li><strong style="color:var(--text-primary);">The question</strong> — Lead with curiosity</li>
+                <li><strong style="color:var(--text-primary);">What the data shows</strong> — Overview chart (big picture)</li>
+                <li><strong style="color:var(--text-primary);">Zooming in</strong> — Detailed chart (the nuance)</li>
+                <li><strong style="color:var(--text-primary);">The answer</strong> — Summary (what we learned)</li>
+              </ol>
+              <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;">Best for: Exploratory analysis, debugging investigations, feature deep-dives.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Dashboard — Putting It Together -->
+        <section class="lesson-section fade-in">
+          <h2>📈 Putting It Together: A Story in Four Charts</h2>
+          <p>Here's a complete story arc built as a mini-dashboard. Each component plays a role in the narrative.</p>
+
+          <div class="dashboard" style="margin-bottom:1rem;">
+            <div class="kpi-card" style="border-top:3px solid var(--accent);">
+              <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-light); margin-bottom:0.5rem;">① Opening</div>
+              <div class="kpi-label">Total Revenue</div>
+              <div class="kpi-value">$2.4M</div>
+              <div class="kpi-change positive">↑ 12% YoY</div>
+            </div>
+            <div class="kpi-card" style="border-top:3px solid var(--danger);">
+              <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--danger); margin-bottom:0.5rem;">② Challenge</div>
+              <div class="kpi-label">Q3 Revenue</div>
+              <div class="kpi-value">$480K</div>
+              <div class="kpi-change negative">↓ 22% vs Q2</div>
+            </div>
+          </div>
+
+          <div class="chart-container" style="border-top:3px solid var(--warning);">
+            <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--warning); margin-bottom:0.5rem;">③ Analysis</div>
+            <div class="chart-title">Revenue by Quarter — Q3 Dip Exposed</div>
+            <div class="chart-subtitle">Quarterly revenue shows a clear dip in Q3</div>
+            <div class="chart-wrapper"><canvas id="chart-revenue-quarters"></canvas></div>
+          </div>
+
+          <div class="chart-container" style="border-top:3px solid var(--success);">
+            <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--success); margin-bottom:0.5rem;">④ Resolution</div>
+            <div class="chart-title">Customer Acquisition vs Revenue</div>
+            <div class="chart-subtitle">New signups stayed flat — onboarding is the bottleneck</div>
+            <div class="chart-wrapper"><canvas id="chart-acquisition-revenue"></canvas></div>
+          </div>
+
+          <div class="kpi-card" style="border-top:3px solid var(--success); margin-top:1rem; text-align:left; padding:1.5rem 2rem;">
+            <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--success); margin-bottom:0.5rem;">④ Resolution</div>
+            <div class="kpi-label">Recommendation</div>
+            <div class="kpi-value" style="font-size:1.25rem;">Fix onboarding flow</div>
+            <div class="kpi-change positive" style="font-size:0.9rem;">Projected impact: +$600K annually</div>
+          </div>
+        </section>
+
+        <!-- Section 6: PowerPoint Tips -->
+        <section class="lesson-section fade-in">
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              🎨 PowerPoint Tips for Narrative Structure
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li><strong>Use one slide per chart</strong> — never cram 4 charts on one slide. Each chart deserves its own moment.</li>
+                  <li><strong>Use Slide Sorter view</strong> to see your story arc (<code>View → Slide Sorter</code>). You should be able to "read" your narrative from the thumbnails.</li>
+                  <li><strong>Add "section" dividers</strong> between story phases. A simple dark slide with a single sentence resets your audience's attention.</li>
+                  <li><strong>Use animations sparingly</strong>: <code>Appear</code> (not Fly In) to reveal data progressively. Fancy transitions distract from data.</li>
+                  <li><strong>Build your story in "presenter notes" first</strong>, then design slides. Write the narrative before the visuals.</li>
+                  <li><strong>Use the "Blank" slide layout</strong> — not a template with boxes everywhere. Templates fight your story.</li>
+                  <li><strong>For sequential reveals</strong>: use PowerPoint <code>Morph</code> transition between similar charts. It creates smooth, meaningful animation between data states.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Key Takeaways -->
+        <section class="lesson-section fade-in">
+          <div class="takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+              <li>Every data presentation needs a story arc: tension → resolution</li>
+              <li>One chart per point — never overload a single figure</li>
+              <li>Build up to your key insight — don't start with the conclusion (usually)</li>
+              <li>Use the Opening → Challenge → Action → Resolution format as your default</li>
+              <li>Multiple simple charts beat one complex chart</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="topic5.html" class="prev">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 5: Non-Negotiable Rules</span>
+          </a>
+          <a href="report.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Full Research Report</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Viz for Non-Nerds — Built for learning. <a href="report.html">Read the full research report →</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic6-charts.js"></script>
+</body>
+</html>

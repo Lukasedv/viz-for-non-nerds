@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 1: Make a Figure for the Generals — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html" class="active">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 1</span>
+          <h1>Make a Figure for the Generals</h1>
+          <p class="lead">If your audience needs more than 5 seconds to understand your chart, you've already lost them.</p>
+          <blockquote>"Never assume your audience can rapidly process complex visual displays." — Claus Wilke</blockquote>
+        </div>
+
+        <!-- Section 1: The Problem -->
+        <section class="lesson-section fade-in">
+          <h2>🎯 The Problem</h2>
+          <p>Data scientists build charts for <strong>analysis</strong>, not <strong>communication</strong>. The chart that helped you discover the insight is almost never the right chart to present to your audience. Exploratory plots are dense, multi-dimensional, and require domain knowledge to interpret. Communication charts need to be instantly clear.</p>
+          <p>Think of it this way: a U.S. Army general should be able to glance at your figure and immediately see the point. No squinting at legends, no decoding color scales, no counting overlapping dots. If the chart requires a paragraph of explanation, you haven't made a chart — you've made a puzzle.</p>
+
+          <div class="chart-container">
+            <div class="chart-title">⚠️ A Typical Analyst Chart</div>
+            <div class="chart-subtitle">Flight performance data — try to find the insight in 5 seconds</div>
+            <div class="chart-wrapper">
+              <canvas id="bad-scatter-chart"></canvas>
+            </div>
+          </div>
+          <p class="text-muted" style="font-size: 0.85rem; text-align: center;">Can you tell which airline has the worst delays? It shouldn't be this hard.</p>
+        </section>
+
+        <!-- Section 2: Before/After Demo -->
+        <section class="lesson-section fade-in">
+          <h2>🔄 Before &amp; After</h2>
+          <p>The same data, two completely different charts. The first tries to show everything; the second answers one question clearly: <strong>Which airline has the worst average arrival delay?</strong></p>
+
+          <div class="before-after">
+            <div class="ba-toggle">
+              <button class="ba-before active" data-target="before">❌ Before</button>
+              <button class="ba-after" data-target="after">✅ After</button>
+            </div>
+
+            <div class="ba-chart active" data-view="before">
+              <div class="chart-container">
+                <div class="chart-title">Flight Performance by Airline</div>
+                <div class="chart-subtitle">Distance vs. Arrival Delay — 5 airlines, variable point sizes</div>
+                <div class="chart-wrapper">
+                  <canvas id="before-chart"></canvas>
+                </div>
+                <p class="text-muted mt-2" style="font-size:0.85rem;">Too many dimensions. Color, size, position — the viewer has to decode all of them before reaching any conclusion.</p>
+              </div>
+            </div>
+
+            <div class="ba-chart" data-view="after">
+              <div class="chart-container">
+                <div class="chart-title">Mean Arrival Delay by Airline</div>
+                <div class="chart-subtitle">Minutes above/below schedule — sorted for instant comparison</div>
+                <div class="chart-wrapper">
+                  <canvas id="after-chart"></canvas>
+                </div>
+                <p class="text-muted mt-2" style="font-size:0.85rem;">One dimension, one question, one answer. Delta performs best; Southwest has the worst delays.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Interactive Dimension Slider -->
+        <section class="lesson-section fade-in">
+          <h2>📏 Complexity vs. Clarity</h2>
+          <p>Every dimension you add to a chart makes it harder to read. Use the slider below to see how adding visual encodings degrades readability — even when the underlying data stays the same.</p>
+
+          <div class="controls">
+            <div class="control-group" style="flex:1;">
+              <label>Dimensions Added</label>
+              <input type="range" id="dimension-slider" min="1" max="5" value="1" step="1">
+            </div>
+            <div class="control-group">
+              <label>Current Step</label>
+              <span id="dimension-label" style="color: var(--text-primary); font-weight: 600;">1 — Bars Only</span>
+            </div>
+            <div class="control-group">
+              <label>Readability</label>
+              <span id="readability-score" style="font-size: 1.1rem;">★★★★★</span>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-title" id="complexity-title">Step 1: Simple Bars</div>
+            <div class="chart-subtitle" id="complexity-subtitle">Revenue by product — one clear dimension</div>
+            <div class="chart-wrapper">
+              <canvas id="complexity-chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Dashboard Example -->
+        <section class="lesson-section fade-in">
+          <h2>📋 The Executive Dashboard</h2>
+          <p>Generals don't just read individual charts — they look at dashboards. A clean executive dashboard uses KPI cards for the headlines and simple charts for supporting context. No 3D pie charts, no dual axes, no gradients.</p>
+
+          <div class="chart-container full-width">
+            <div class="chart-title">The Executive Dashboard — Clean, Clear, Actionable</div>
+            <div class="chart-subtitle">Everything a decision-maker needs, nothing they don't</div>
+
+            <div class="dashboard mt-2">
+              <div class="kpi-card">
+                <div class="kpi-label">Revenue</div>
+                <div class="kpi-value">$2.4M</div>
+                <div class="kpi-change positive">▲ +12%</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Customers</div>
+                <div class="kpi-value">15,230</div>
+                <div class="kpi-change positive">▲ +8%</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Churn</div>
+                <div class="kpi-value">3.2%</div>
+                <div class="kpi-change positive">▼ -0.5%</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">NPS</div>
+                <div class="kpi-value">72</div>
+                <div class="kpi-change positive">▲ +4</div>
+              </div>
+            </div>
+
+            <div class="dashboard dashboard-2col mt-2">
+              <div>
+                <div class="chart-wrapper">
+                  <canvas id="dashboard-bar"></canvas>
+                </div>
+              </div>
+              <div>
+                <div class="chart-wrapper">
+                  <canvas id="dashboard-line"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: PowerPoint Tips (Collapsible) -->
+        <section class="lesson-section fade-in">
+          <h2>💡 Practical Tips</h2>
+          <p>You don't need a design degree. These seven PowerPoint-specific tips will immediately improve every chart you present.</p>
+
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              🎨 PowerPoint Chart Cleanup — 7 Quick Wins
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li><h4>Start with a built-in template, then strip it down</h4>
+                    <p>Insert a chart using PowerPoint's built-in templates. Then remove every element that doesn't directly support your message.</p>
+                  </li>
+                  <li><h4>Remove the legend — label bars directly</h4>
+                    <p>Click on the legend and delete it. Instead, right-click a data series → <code>Add Data Labels</code>. Direct labeling eliminates the back-and-forth eye movement between legend and bars.</p>
+                  </li>
+                  <li><h4>Use Quick Layout 1 (minimal)</h4>
+                    <p>Click the chart → <code>Chart Design</code> tab → <code>Quick Layout</code> → <code>Layout 1</code>. This gives you the cleanest starting point.</p>
+                  </li>
+                  <li><h4>Delete gridlines</h4>
+                    <p>Click on any gridline to select them → press <code>Delete</code>. Gridlines add visual noise without adding information when your bars are labeled.</p>
+                  </li>
+                  <li><h4>One accent color + grey</h4>
+                    <p>Pick a single accent color for the bar or line you want to highlight. Make everything else a neutral grey. This instantly creates a visual hierarchy.</p>
+                  </li>
+                  <li><h4>Minimum 14pt font size</h4>
+                    <p>If someone in the back of the room can't read your axis labels, they don't exist. Set all chart text to at least 14pt.</p>
+                  </li>
+                  <li><h4>Add a story-driven title</h4>
+                    <p>Don't title your chart "Revenue by Quarter." Instead, use a text box above the chart that says <strong>"Revenue grew 12% in Q4, driven by enterprise sales."</strong> Tell them the insight, not the axis.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Key Takeaways -->
+        <section class="lesson-section fade-in">
+          <div class="takeaways">
+            <h3>🔑 Key Takeaways</h3>
+            <ul>
+              <li>Your analysis chart is not your communication chart</li>
+              <li>If it takes more than 5 seconds to understand, simplify</li>
+              <li>Remove dimensions until only the insight remains</li>
+              <li>"What would a general see in 5 seconds?"</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="index.html">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Course Overview</span>
+          </a>
+          <a href="topic2.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Topic 2: The SWD Framework</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Viz for Non-Nerds — Built for data scientists who present to humans.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic1-charts.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 5: Non-Negotiable Rules — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html" class="active">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 5</span>
+          <h1>Non-Negotiable Rules</h1>
+          <p class="lead">Most visualization rules are guidelines. These three are laws.</p>
+          <blockquote>"The one thing every data visualization professional agrees on: pie charts represent 100% of the quantity." — <em>Hands-On Data Visualization</em></blockquote>
+        </div>
+
+        <!-- Section 1: Bar Charts Start at Zero -->
+        <section class="lesson-section fade-in" id="rule-bars">
+          <h2>📏 Rule 1 — Bar Charts Start at Zero</h2>
+          <p>Bar charts encode value through <strong>length</strong>. When the y-axis doesn't start at zero, the lengths become meaningless — and the chart becomes a lie. Drag the slider below to see how a misleading axis distorts perception.</p>
+
+          <div class="chart-container">
+            <div class="chart-title">Median Income by County</div>
+            <div class="chart-subtitle">Drag the slider to see how a truncated axis distorts the data</div>
+
+            <div class="controls">
+              <div class="control-group">
+                <label for="yAxisMin">Y-Axis Minimum</label>
+                <input type="range" id="yAxisMin" min="0" max="50000" step="1000" value="0">
+              </div>
+              <div class="control-group">
+                <label>Current min</label>
+                <span id="yAxisMinValue" style="color:var(--text-primary);font-weight:600;font-size:0.9rem;">$0</span>
+              </div>
+              <span id="barWarning" class="warning-badge safe">✓ ACCURATE</span>
+            </div>
+
+            <div class="chart-wrapper">
+              <canvas id="incomeBarChart"></canvas>
+            </div>
+
+            <p id="barExplanation" class="mt-2" style="font-size:0.9rem;color:var(--text-secondary);">
+              At this scale, Honolulu appears to have 1.3× the income of Hawaii, and it's actually 1.3× more.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 2: The Line Chart Exception -->
+        <section class="lesson-section fade-in" id="line-exception">
+          <h2>📈 The Line Chart Exception</h2>
+          <p>Line charts encode data via <strong>position</strong> and <strong>angle</strong>, not length. Both charts below are correct — but the one on the right better communicates the change.</p>
+          <p class="text-muted" style="font-size:0.9rem;">As Alberto Cairo argues: "A line chart with a zero baseline can actually <em>hide</em> meaningful variation in the data."</p>
+
+          <div class="chart-compare">
+            <div class="chart-container">
+              <div class="chart-title">❌ Starts at Zero</div>
+              <div class="chart-subtitle">Variation looks flat</div>
+              <div class="chart-wrapper">
+                <canvas id="lineZeroChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-title">✓ Appropriate Range</div>
+              <div class="chart-subtitle">Variation is visible</div>
+              <div class="chart-wrapper">
+                <canvas id="lineRangeChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <p>Both charts show the same data. The left chart starts at 0°F, flattening the seasonal pattern. The right chart zooms into the relevant range, making the temperature changes clearly visible. For line charts, this is perfectly valid.</p>
+        </section>
+
+        <!-- Section 3: Pie Charts Sum to 100% -->
+        <section class="lesson-section fade-in" id="rule-pie">
+          <h2>🥧 Rule 2 — Pie Charts Sum to 100%</h2>
+          <p>A pie chart represents a <strong>part-to-whole</strong> relationship. If slices don't add up to 100%, the chart is fundamentally broken. Use the buttons below to see what happens when this rule is violated.</p>
+
+          <div class="chart-container">
+            <div class="chart-title">Market Share</div>
+            <div class="chart-subtitle">Break the pie to see why summing to 100% matters</div>
+
+            <div class="controls">
+              <button class="step-btn" id="pieAddOverlap">Add overlapping category</button>
+              <button class="step-btn" id="pieSurveyData">Use survey data (multi-select)</button>
+              <button class="step-btn active" id="pieReset">Reset to valid</button>
+              <span id="pieWarning" class="warning-badge safe">✓ VALID — Slices sum to 100%</span>
+            </div>
+
+            <div class="chart-wrapper" style="max-height:350px;">
+              <canvas id="marketPieChart"></canvas>
+            </div>
+
+            <p class="mt-2 text-muted" style="font-size:0.85rem;">💡 More than 5 slices? Use a bar chart instead.</p>
+          </div>
+        </section>
+
+        <!-- Section 4: Color Must Be Intentional -->
+        <section class="lesson-section fade-in" id="rule-color">
+          <h2>🎨 Rule 3 — Color Must Be Intentional</h2>
+          <p>Color should encode <strong>meaning</strong>, not just decoration. Random colors confuse readers. Misleading colors create wrong associations. Intentional colors highlight the insight.</p>
+
+          <div class="dashboard" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="chart-container">
+              <div class="chart-title">❌ Rainbow Colors</div>
+              <div class="chart-subtitle">No meaning — just noise</div>
+              <div class="chart-wrapper">
+                <canvas id="colorRainbowChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-title">❌ Misleading Colors</div>
+              <div class="chart-subtitle">Red = Profit? Green = Loss?</div>
+              <div class="chart-wrapper">
+                <canvas id="colorMisleadChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-title">✓ Intentional</div>
+              <div class="chart-subtitle">Highlight the insight</div>
+              <div class="chart-wrapper">
+                <canvas id="colorIntentChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <h3>🔍 Color Blindness</h3>
+          <p>About 8% of men and 0.5% of women have some form of color vision deficiency. If your chart relies on red vs. green to distinguish categories, a significant portion of your audience can't read it.</p>
+          <p><strong>Tip:</strong> Use the free tool <a href="https://colororacle.org/" target="_blank" rel="noopener" style="color:var(--accent-light);">Color Oracle</a> to simulate how your charts look to colorblind viewers. Or simply print to grayscale and check if the chart still makes sense.</p>
+        </section>
+
+        <!-- Section 5: Quick Reference Card -->
+        <section class="lesson-section fade-in" id="quick-reference">
+          <h2>📋 Quick Reference</h2>
+          <div class="chart-container" style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+              <thead>
+                <tr>
+                  <th style="background:var(--bg-secondary);padding:0.75rem 1rem;text-align:left;font-weight:600;border-bottom:2px solid var(--border);">Rule</th>
+                  <th style="background:var(--bg-secondary);padding:0.75rem 1rem;text-align:left;font-weight:600;border-bottom:2px solid var(--border);">Why</th>
+                  <th style="background:var(--bg-secondary);padding:0.75rem 1rem;text-align:left;font-weight:600;border-bottom:2px solid var(--border);">Check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-primary);font-weight:600;">Bars start at 0</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Length encodes value</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Is y-axis min = 0?</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-primary);font-weight:600;">Pies sum to 100%</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Part-to-whole</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Do slices add to 100%?</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-primary);font-weight:600;">Color is intentional</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Meaning and accessibility</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Is there a reason for each color?</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-primary);font-weight:600;">Line charts CAN start higher</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Position encodes value</td>
+                  <td style="padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-secondary);">Is the range appropriate?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 6: PowerPoint Tips (collapsible) -->
+        <section class="lesson-section fade-in" id="ppt-tips">
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              🖥️ PowerPoint Tips — Non-Negotiable Rules
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <h4>Bar Charts</h4>
+                <ol>
+                  <li>Right-click Y axis → <code>Format Axis</code> → Bounds → <strong>Minimum = 0</strong> (always!)</li>
+                </ol>
+                <h4>Pie Charts</h4>
+                <ol>
+                  <li>Make sure your data sums to 100% <strong>before</strong> inserting the chart</li>
+                  <li>Right-click → <code>Format Data Series</code> → Angle of first slice = 0 (start at 12 o'clock)</li>
+                  <li>For 6+ categories: don't use pie — use <code>Insert → Chart → Bar Chart</code></li>
+                </ol>
+                <h4>Color</h4>
+                <ol>
+                  <li>Use your company colors. If unsure, use <strong>ONE color + grey</strong></li>
+                  <li>Go to <code>Design → Variants → Colors</code> to set a consistent color theme</li>
+                  <li>Check for color blindness: print to PDF in grayscale and check readability</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Key Takeaways -->
+        <section class="lesson-section fade-in" id="takeaways">
+          <div class="takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+              <li>Bar charts that don't start at zero are lying (even unintentionally)</li>
+              <li>Pie charts that exceed 100% are invalid — use a bar chart instead</li>
+              <li>Line charts are the exception — they can start at non-zero values</li>
+              <li>Color should encode meaning, not just decoration</li>
+              <li>Always check accessibility (color blindness, grayscale printing)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="topic4.html">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 4: Story-Driven Titles</span>
+          </a>
+          <a href="topic6.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Topic 6: Narrative Structure</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Viz for Non-Nerds — Built for learning, not for profit.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic5-charts.js"></script>
+</body>
+</html>

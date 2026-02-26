@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 2: The SWD Framework — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html" class="active">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 2</span>
+          <h1>The SWD Framework</h1>
+          <p class="lead">Cole Nussbaumer Knaflic's proven 6-step process for transforming data into clear communication.</p>
+          <blockquote>"If you can't explain it simply, you haven't thought about it enough." — adapted</blockquote>
+        </div>
+
+        <!-- Section 1: Framework Overview -->
+        <section class="lesson-section fade-in" id="framework-overview">
+          <h2>📋 The 6-Step Framework</h2>
+          <p>Cole Nussbaumer Knaflic's <em>Storytelling with Data</em> outlines a sequential process that turns raw charts into compelling visual stories. Each step builds on the previous one.</p>
+
+          <div class="dashboard" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="kpi-card">
+              <div class="kpi-label">Step 1</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Understand the Context</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Who is your audience? What do they need to know? What action should they take?</p>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Step 2</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Choose an Appropriate Display</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Pick the simplest chart type that communicates your message effectively.</p>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Step 3</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Eliminate Clutter</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Remove gridlines, reduce colors, simplify axes — every pixel should earn its place.</p>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Step 4</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Focus Attention</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Use color, size, and position to guide the viewer's eye to what matters most.</p>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Step 5</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Think Like a Designer</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Alignment, white space, and typography turn a chart into a polished visual.</p>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Step 6</div>
+              <div class="kpi-value" style="font-size:1.1rem;">Tell a Story</div>
+              <p class="text-muted mt-1" style="font-size:0.8rem;">Give your chart a narrative arc — setup, conflict, resolution — with a story-driven title.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Step-by-Step Walkthrough -->
+        <section class="lesson-section fade-in" id="walkthrough">
+          <h2>🔄 Interactive Step-by-Step Walkthrough</h2>
+          <p>Watch the same dataset transform through each step of the SWD framework. Click each step to see the chart evolve.</p>
+
+          <div class="steps" id="swd-steps">
+            <button class="step-btn active" data-step="0"><span class="step-num">0</span> Start</button>
+            <button class="step-btn" data-step="1"><span class="step-num">1</span> Context</button>
+            <button class="step-btn" data-step="2"><span class="step-num">2</span> Display</button>
+            <button class="step-btn" data-step="3"><span class="step-num">3</span> Clutter</button>
+            <button class="step-btn" data-step="4"><span class="step-num">4</span> Attention</button>
+            <button class="step-btn" data-step="5"><span class="step-num">5</span> Designer</button>
+            <button class="step-btn" data-step="6"><span class="step-num">6</span> Story</button>
+          </div>
+
+          <div class="chart-container" id="walkthrough-chart-container">
+            <div class="chart-title" id="walkthrough-title">Customer Satisfaction by Product Line (Q1–Q4)</div>
+            <div class="chart-subtitle" id="walkthrough-subtitle">Raw data — 24 bars across 6 products and 4 quarters</div>
+            <div class="chart-wrapper">
+              <canvas id="walkthrough-chart"></canvas>
+            </div>
+          </div>
+
+          <div id="walkthrough-explanation" class="intro-card" style="margin-top:1rem;">
+            <div class="intro-icon">📊</div>
+            <div>
+              <h3 id="walkthrough-exp-title">Starting Point</h3>
+              <p id="walkthrough-exp-text">This is the default grouped bar chart — cluttered, colorful, and hard to read. Let's walk through the SWD framework to fix it.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Audience Selector Demo -->
+        <section class="lesson-section fade-in" id="audience-demo">
+          <h2>👥 Same Data, Different Audience</h2>
+          <p>The same underlying satisfaction data should be presented differently depending on who's reading it. Select an audience to see the difference.</p>
+
+          <div class="controls">
+            <div class="control-group">
+              <label for="audience-select">Audience</label>
+              <select id="audience-select">
+                <option value="ceo">CEO</option>
+                <option value="data-scientist">Data Scientist</option>
+                <option value="marketing">Marketing Manager</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="audience-display">
+            <!-- CEO view (default) -->
+            <div id="audience-ceo" class="audience-view">
+              <div class="dashboard">
+                <div class="kpi-card" id="ceo-kpi">
+                  <div class="kpi-label">Overall Satisfaction</div>
+                  <div class="kpi-value">8.2<span style="font-size:1rem;color:var(--text-muted)">/10</span></div>
+                  <div class="kpi-change positive">↑ 12% vs last year</div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <div class="chart-title">Product C Leads Customer Satisfaction</div>
+                <div class="chart-subtitle">Average score by product line — invest in what works</div>
+                <div class="chart-wrapper">
+                  <canvas id="chart-ceo"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Scientist view -->
+            <div id="audience-data-scientist" class="audience-view" style="display:none;">
+              <div class="chart-container">
+                <div class="chart-title">Satisfaction Score Distribution by Product (n=2,400)</div>
+                <div class="chart-subtitle">Mean ± 1 SD | Pearson r = 0.84, p &lt; 0.001</div>
+                <div class="chart-wrapper">
+                  <canvas id="chart-ds"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Marketing Manager view -->
+            <div id="audience-marketing" class="audience-view" style="display:none;">
+              <div class="chart-container">
+                <div class="chart-title">🌟 Customer Love by Product Line</div>
+                <div class="chart-subtitle">"Product C is our customers' favorite!" — Q4 survey highlights</div>
+                <div class="chart-wrapper">
+                  <canvas id="chart-marketing"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Context Worksheet -->
+        <section class="lesson-section fade-in" id="context-worksheet">
+          <h2>📝 The Context Worksheet</h2>
+          <p>Before touching a chart tool, answer these four questions. This is your compass for every visualization decision.</p>
+
+          <div class="chart-container" style="border-left: 4px solid var(--accent);">
+            <div style="display:grid; gap:1.25rem;">
+              <div>
+                <div class="kpi-label" style="text-align:left; margin-bottom:0.25rem;">Who is your audience?</div>
+                <div style="background:var(--bg-secondary); padding:0.6rem 1rem; border-radius:var(--radius-sm); color:var(--text-primary); font-weight:600;">VP of Product</div>
+              </div>
+              <div>
+                <div class="kpi-label" style="text-align:left; margin-bottom:0.25rem;">What do they need to know?</div>
+                <div style="background:var(--bg-secondary); padding:0.6rem 1rem; border-radius:var(--radius-sm); color:var(--text-primary); font-weight:600;">Which product line to invest in</div>
+              </div>
+              <div>
+                <div class="kpi-label" style="text-align:left; margin-bottom:0.25rem;">What action should they take?</div>
+                <div style="background:var(--bg-secondary); padding:0.6rem 1rem; border-radius:var(--radius-sm); color:var(--text-primary); font-weight:600;">Increase budget for Product C</div>
+              </div>
+              <div style="border-top:1px solid var(--border); padding-top:1.25rem;">
+                <div class="kpi-label" style="text-align:left; margin-bottom:0.25rem;">💡 Big Idea</div>
+                <div style="background:var(--accent-glow); border:1px solid rgba(99,102,241,0.3); padding:0.8rem 1rem; border-radius:var(--radius-sm); color:var(--accent-light); font-weight:600; font-size:1rem;">
+                  Product C's satisfaction scores are 23% above average — we should double our investment.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: PowerPoint Tips (collapsible) -->
+        <section class="lesson-section fade-in" id="pptx-tips">
+          <h2>💻 Applying the Framework in PowerPoint</h2>
+
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              <span>📎 Step-by-step PowerPoint tips</span>
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li>Start with a <strong>blank slide</strong>, not a template chart.</li>
+                  <li>Go to <code>Insert → Chart</code> and choose the simplest chart type that works.</li>
+                  <li>Paste your data into the Excel sheet that opens.</li>
+                  <li>Right-click the chart → <code>Format Chart Area</code> → remove fill, remove border.</li>
+                  <li>Delete the legend — add data labels instead (<code>Right-click series → Add Data Labels</code>).</li>
+                  <li>Use your company's brand color for the <strong>ONE key series</strong>, grey (<code>#B0B0B0</code>) for everything else.</li>
+                  <li>Add a text box <strong>above</strong> the chart with your story-driven title in <strong>24pt bold</strong>.</li>
+                  <li>Use <code>Slide Master</code> to set default fonts to Calibri or Segoe UI.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Key Takeaways -->
+        <section class="lesson-section fade-in" id="takeaways">
+          <div class="takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+              <li>Always start with context: who, what, why, action.</li>
+              <li>The "Big Idea" sentence is your compass for every design decision.</li>
+              <li>Same data, different audience = different chart.</li>
+              <li>The 6 steps are sequential — don't skip to "make it pretty."</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <div class="page-nav">
+          <a href="topic1.html" class="prev">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 1: Make a Figure for the Generals</span>
+          </a>
+          <a href="topic3.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Topic 3: Eliminate Chart Junk</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Viz for Non-Nerds — A course on clear data communication</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic2-charts.js"></script>
+</body>
+</html>

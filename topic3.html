@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 3: Eliminate Chart Junk — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html" class="active">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 3</span>
+          <h1>Eliminate Chart Junk</h1>
+          <p class="lead">Strip away the noise — shadows, 3D effects, gridlines, backgrounds — and let your data breathe.</p>
+          <blockquote>"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away." — Antoine de Saint-Exupéry</blockquote>
+        </div>
+
+        <!-- Section 1: What is Chart Junk? -->
+        <section class="lesson-section fade-in">
+          <h2>📐 What is Chart Junk?</h2>
+          <p>Edward Tufte introduced the concept of the <strong>data-ink ratio</strong>: the proportion of a graphic's ink devoted to the non-redundant display of data. <em>Data-ink</em> is the non-erasable core — remove it, and you lose information. Everything else is potentially <strong>"chart junk."</strong></p>
+          <p>As the team at Dark Horse Analytics put it: <strong>"Data Looks Better Naked."</strong> The goal is to maximize the data-ink ratio by stripping away non-data elements that clutter without informing.</p>
+          <h3>Common offenders</h3>
+          <ul>
+            <li>3D effects and perspective distortion</li>
+            <li>Heavy, prominent gridlines</li>
+            <li>Background images or colors</li>
+            <li>Gradient fills on bars or areas</li>
+            <li>Shadow and bevel effects</li>
+            <li>Decorative clip-art and icons</li>
+            <li>Unnecessary borders and boxes</li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Interactive Chart Junk Remover -->
+        <section class="lesson-section fade-in">
+          <h2>🧹 Interactive Chart Junk Remover</h2>
+          <p>This chart starts with <em>all the junk</em>. Uncheck each item below to strip it away and watch the data-ink ratio climb.</p>
+
+          <div class="toggle-list" id="junk-toggles">
+            <label class="toggle-item"><input type="checkbox" checked data-junk="background"> Background color</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="gridlines"> Heavy gridlines</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="threed"> 3D effect</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="borders"> Borders</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="gradients"> Gradient fills</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="legend"> Legend</label>
+            <label class="toggle-item"><input type="checkbox" checked data-junk="colors"> Excessive colors</label>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:1rem;margin:1rem 0;">
+            <span style="font-size:0.85rem;color:var(--text-muted);font-weight:600;">DATA-INK RATIO</span>
+            <span id="ink-ratio" style="font-size:1.5rem;font-weight:800;color:var(--danger);">30%</span>
+          </div>
+
+          <div class="chart-container" id="junk-chart-area">
+            <div class="chart-wrapper">
+              <canvas id="junkRemoverChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Before / After Side-by-Side -->
+        <section class="lesson-section fade-in">
+          <h2>🔄 Before &amp; After</h2>
+          <p>The same data, two treatments. Which one communicates faster?</p>
+
+          <div class="chart-compare">
+            <div class="chart-container">
+              <p class="chart-title">❌ Before</p>
+              <p class="chart-subtitle">All the junk enabled</p>
+              <div class="chart-wrapper">
+                <canvas id="compareBeforeChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <p class="chart-title">✓ After</p>
+              <p class="chart-subtitle">Clean, minimal, data-forward</p>
+              <div class="chart-wrapper">
+                <canvas id="compareAfterChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: The Data-Ink Ratio Formula -->
+        <section class="lesson-section fade-in">
+          <h2>📏 The Data-Ink Ratio</h2>
+          <div class="intro-card">
+            <div class="intro-icon">🧮</div>
+            <div>
+              <h3>Data-Ink Ratio = Data-Ink ÷ Total Ink</h3>
+              <p><strong>Goal:</strong> Maximize this ratio — aim for &gt;80%. Every drop of ink on your chart should serve the data. If you can erase an element without losing information, it's a candidate for removal.</p>
+              <p style="margin-top:0.75rem;"><strong>A caveat from Stephen Few:</strong> "Within reason" — some redundancy is acceptable if it genuinely aids comprehension. A faint gridline that helps the eye track values may earn its keep. The ratio is a <em>mindset</em>, not a strict formula.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Spot the Junk Dashboard -->
+        <section class="lesson-section fade-in">
+          <h2>🔍 Spot the Junk</h2>
+          <p>Two of these charts suffer from chart junk. Two are clean. Can you tell which is which?</p>
+
+          <div class="dashboard dashboard-2col">
+            <div class="chart-container">
+              <p class="chart-title">❌ 3D Pie — Too Many Slices</p>
+              <p class="chart-subtitle">Shadows, 3D effect, 8 tiny segments</p>
+              <div class="chart-wrapper">
+                <canvas id="spotBadPie"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <p class="chart-title">✓ Horizontal Bar Chart</p>
+              <p class="chart-subtitle">Same data, instantly readable</p>
+              <div class="chart-wrapper">
+                <canvas id="spotGoodBar"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <p class="chart-title">❌ Over-Styled Line Chart</p>
+              <p class="chart-subtitle">Heavy gridlines, gradient fill, thick borders</p>
+              <div class="chart-wrapper">
+                <canvas id="spotBadLine"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <p class="chart-title">✓ Clean Line Chart</p>
+              <p class="chart-subtitle">Minimal styling, data stands out</p>
+              <div class="chart-wrapper">
+                <canvas id="spotGoodLine"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: PowerPoint Tips (collapsible) -->
+        <section class="lesson-section fade-in">
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              <span>💡 PowerPoint Tips: Removing Chart Junk</span>
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li>Select chart → <code>Chart Design</code> → right-click chart area → <code>Format Chart Area</code> → <strong>No Fill</strong></li>
+                  <li>Click gridlines → press <code>Delete</code> (removes them entirely)</li>
+                  <li>Or: right-click gridlines → <code>Format Gridlines</code> → Line Color → <strong>Light grey, 0.25pt</strong></li>
+                  <li>Remove the chart border: <code>Format Chart Area</code> → Border → <strong>No Line</strong></li>
+                  <li>Bars: right-click → <code>Format Data Series</code> → Fill → <strong>Solid Fill</strong> (single color, no gradient)</li>
+                  <li>Never use: Chart Styles with 3D effects, shadows, or bevels</li>
+                  <li>Go to <code>View</code> → <code>Slide Master</code> to set company colors as your default palette</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Key Takeaways -->
+        <section class="lesson-section fade-in">
+          <div class="takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+              <li>Start with a blank chart and add only what's necessary</li>
+              <li>Ask for each element: "Does this help the reader understand the data?"</li>
+              <li>Grey is your best friend — use it for non-essential elements</li>
+              <li>The data-ink ratio is a mindset, not a strict formula</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="topic2.html" class="prev">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 2: The SWD Framework</span>
+          </a>
+          <a href="topic4.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Topic 4: Story-Driven Titles</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Viz for Non-Nerds — A course on clear, effective data visualization.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic3-charts.js"></script>
+</body>
+</html>

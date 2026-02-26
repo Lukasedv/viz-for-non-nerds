@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 4: Story-Driven Titles — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html" class="active">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="report.html">Report</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 4</span>
+          <h1>Story-Driven Titles</h1>
+          <p class="lead">Your title should tell the insight, not just label the axes.</p>
+          <blockquote>"A good title is short, clear, and tells a story on its own." — <em>Hands-On Data Visualization</em></blockquote>
+        </div>
+
+        <!-- Section 1: The Three Title Types -->
+        <section class="lesson-section fade-in">
+          <h2>📝 The Three Title Types</h2>
+          <p>The same data can tell completely different stories depending on the title. Use the buttons below to see how changing <em>only the title</em> transforms the chart's impact.</p>
+
+          <div class="steps" id="title-type-steps">
+            <button class="step-btn active" data-step="technical">
+              <span class="step-num">1</span> Technical
+            </button>
+            <button class="step-btn" data-step="descriptive">
+              <span class="step-num">2</span> Descriptive
+            </button>
+            <button class="step-btn" data-step="story">
+              <span class="step-num">3</span> Story-Driven
+            </button>
+          </div>
+
+          <div class="chart-container">
+            <div id="title-type-label" class="warning-badge danger">❌ The worst</div>
+            <div class="chart-wrapper">
+              <canvas id="title-type-chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: The Title Formula -->
+        <section class="lesson-section fade-in">
+          <h2>🧪 The Title Formula</h2>
+          <p>Great chart titles follow a predictable structure. Use this formula every time:</p>
+
+          <div class="intro-card">
+            <div class="intro-icon">📐</div>
+            <div>
+              <h3>[Subject] [verb] [magnitude] [timeframe/context] — [implication or action]</h3>
+              <p>This formula turns passive labels into active, insight-driven headlines.</p>
+            </div>
+          </div>
+
+          <h3>Examples</h3>
+          <ul>
+            <li><strong>"Customer Churn Increased 40% in Q3 — Onboarding Flow Needs Redesign"</strong></li>
+            <li><strong>"Product C Leads in Satisfaction Scores — Double Down on Investment"</strong></li>
+            <li><strong>"Conversion Rate Hit All-Time High After Redesign — Roll Out to All Markets"</strong></li>
+          </ul>
+        </section>
+
+        <!-- Section 3: Live Title Editor -->
+        <section class="lesson-section fade-in">
+          <h2>✏️ Live Title Editor</h2>
+          <p>Try writing your own story-driven title. Type in the box and watch it update on the chart in real time.</p>
+
+          <div class="controls">
+            <div class="control-group" style="flex:1;">
+              <label for="title-input">Chart Title</label>
+              <input type="text" id="title-input" value="Sales by Region" placeholder="Type your title here…" style="width:100%;">
+            </div>
+          </div>
+
+          <div class="steps" id="title-suggestions">
+            <button class="step-btn" data-title="Sales by Region">Technical</button>
+            <button class="step-btn" data-title="East Region Dominates Sales">Story-Driven</button>
+            <button class="step-btn" data-title="East Outsells West 2:1 — Expand Eastern Operations">Story + Action</button>
+          </div>
+
+          <div class="chart-container">
+            <div class="chart-wrapper">
+              <canvas id="live-title-chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Subtitle Strategy -->
+        <section class="lesson-section fade-in">
+          <h2>🎯 Subtitle Strategy</h2>
+          <p>The hybrid approach gives you the best of both worlds: a story-driven title for impact, plus a technical subtitle for context.</p>
+
+          <div class="chart-container">
+            <div class="chart-title" style="font-size:1.15rem;font-weight:700;">Pandemic Hits Service Industry Hardest</div>
+            <div class="chart-subtitle">Monthly revenue change by sector, Jan–Dec 2020</div>
+            <div class="chart-wrapper">
+              <canvas id="subtitle-chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Title Makeover Gallery -->
+        <section class="lesson-section fade-in">
+          <h2>🖼️ Title Makeover Gallery</h2>
+          <p>Every chart deserves a makeover. See how swapping a generic title for a story-driven one transforms each chart.</p>
+
+          <div class="dashboard dashboard-2col">
+            <div class="chart-container" style="margin:0;">
+              <div class="chart-subtitle" style="text-decoration:line-through;color:var(--danger);">Before: "Figure 1"</div>
+              <div class="chart-title">Sales Grew 15% Year-over-Year</div>
+              <div class="chart-wrapper"><canvas id="gallery-chart-1"></canvas></div>
+            </div>
+            <div class="chart-container" style="margin:0;">
+              <div class="chart-subtitle" style="text-decoration:line-through;color:var(--danger);">Before: "Customer Count"</div>
+              <div class="chart-title">We Added 2,000 Customers in Q4 Alone</div>
+              <div class="chart-wrapper"><canvas id="gallery-chart-2"></canvas></div>
+            </div>
+            <div class="chart-container" style="margin:0;">
+              <div class="chart-subtitle" style="text-decoration:line-through;color:var(--danger);">Before: "Support Tickets by Month"</div>
+              <div class="chart-title">Support Volume Spiked 3x After v2.0 Launch</div>
+              <div class="chart-wrapper"><canvas id="gallery-chart-3"></canvas></div>
+            </div>
+            <div class="chart-container" style="margin:0;">
+              <div class="chart-subtitle" style="text-decoration:line-through;color:var(--danger);">Before: "NPS Score Trends"</div>
+              <div class="chart-title">Customer Loyalty at All-Time High — NPS Reached 72</div>
+              <div class="chart-wrapper"><canvas id="gallery-chart-4"></canvas></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: PowerPoint Tips -->
+        <section class="lesson-section fade-in">
+          <h2>💡 PowerPoint Tips</h2>
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              📎 How to add proper titles in PowerPoint
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li><strong>Never use PowerPoint's built-in chart title</strong> — it's small and badly positioned.</li>
+                  <li>Instead, add a <strong>Text Box ABOVE the chart</strong>.</li>
+                  <li><strong>Title:</strong> 20–24pt, Bold, dark color.</li>
+                  <li><strong>Subtitle:</strong> 12–14pt, Regular, grey color.</li>
+                  <li><strong>Position:</strong> Left-aligned with the chart's left edge.</li>
+                  <li>Use <code>Format &gt; Text Box &gt; Internal margins</code> to fine-tune alignment.</li>
+                  <li><strong>Template tip:</strong> Create a "Chart Slide" layout in Slide Master with pre-positioned title/subtitle text boxes.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Key Takeaways -->
+        <section class="lesson-section fade-in">
+          <div class="takeaways">
+            <h3>🎯 Key Takeaways</h3>
+            <ul>
+              <li>Technical titles ("Figure 3") are never acceptable for stakeholder presentations.</li>
+              <li>Your title IS your headline — write it like a journalist.</li>
+              <li>Use the formula: [What happened] + [By how much] + [So what].</li>
+              <li>The hybrid title+subtitle approach gives you the best of both worlds.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="topic3.html" class="prev">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 3: Eliminate Chart Junk</span>
+          </a>
+          <a href="topic5.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Topic 5: Non-Negotiable Rules</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Viz for Non-Nerds — Built for the course by <a href="#">John</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic4-charts.js"></script>
+</body>
+</html>

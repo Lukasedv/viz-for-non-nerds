@@ -1,11 +1,12 @@
 /* ============================================
    Viz for Non-Nerds — Course Theme
-   Dark mode, responsive, data-science aesthetic
+   Light/dark mode, responsive, data-science aesthetic
    ============================================ */
 
 /* --- Google Fonts loaded in HTML head --- */
 
 :root {
+  /* Dark theme (default) */
   --bg-primary: #0f1117;
   --bg-secondary: #1a1d27;
   --bg-card: #1e2130;
@@ -21,6 +22,7 @@
   --warning: #f59e0b;
   --danger: #ef4444;
   --danger-glow: rgba(239, 68, 68, 0.15);
+  --success-glow: rgba(16, 185, 129, 0.15);
   --border: #2d3148;
   --border-light: #3d4260;
   --radius: 12px;
@@ -32,6 +34,60 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --max-width: 1200px;
   --content-width: 800px;
+  /* Nav & chart-specific tokens */
+  --nav-bg: rgba(15, 17, 23, 0.85);
+  --chart-tooltip-bg: #1e2130;
+  --chart-tooltip-border: #2d3148;
+  --chart-tooltip-text: #e8eaf0;
+  --chart-tooltip-text-secondary: #9ca3b4;
+  --chart-grid: rgba(45, 49, 72, 0.6);
+  --chart-pie-border: #1e2130;
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-code: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.1);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --danger-glow: rgba(220, 38, 38, 0.1);
+  --success-glow: rgba(5, 150, 105, 0.1);
+  --border: #e2e8f0;
+  --border-light: #cbd5e1;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+  --nav-bg: rgba(248, 250, 252, 0.85);
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #e2e8f0;
+  --chart-tooltip-text: #0f172a;
+  --chart-tooltip-text-secondary: #475569;
+  --chart-grid: rgba(226, 232, 240, 0.8);
+  --chart-pie-border: #ffffff;
+}
+
+/* Smooth transitions during theme switch */
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: color 0.2s ease, background-color 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Disable all transitions on initial load (prevents FOUC flash) */
+html.no-transition *,
+html.no-transition *::before,
+html.no-transition *::after {
+  transition: none !important;
 }
 
 *, *::before, *::after {
@@ -61,7 +117,7 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(15, 17, 23, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   padding: 0 2rem;
@@ -122,6 +178,29 @@ body {
   color: var(--text-primary);
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  background: var(--accent-glow);
+  border-color: var(--accent);
 }
 
 /* --- Hero Section --- */
@@ -709,7 +788,7 @@ body {
 }
 
 .warning-badge.safe {
-  background: rgba(16, 185, 129, 0.15);
+  background: var(--success-glow);
   border: 1px solid var(--success);
   color: var(--success);
 }

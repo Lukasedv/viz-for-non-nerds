@@ -7,6 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>/* FOUC prevention: apply saved theme before first paint */
+    (function () {
+      var s = localStorage.getItem('theme') || 'system';
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', s === 'system' ? d : s);
+      document.documentElement.classList.add('no-transition');
+    }());
+  </script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,6 +23,7 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode" title="Toggle color theme">🌙</button>
       <button class="nav-toggle" aria-label="Menu">☰</button>
       <ul class="nav-links">
         <li><a href="topic1.html">1</a></li>

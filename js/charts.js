@@ -20,43 +20,110 @@ const COLORS = {
   badPalette: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8800', '#88ff00'],
 };
 
-/* Default Chart.js configuration for dark theme */
-const CHART_DEFAULTS = {
-  responsive: true,
-  maintainAspectRatio: true,
-  aspectRatio: 2,
-  plugins: {
-    legend: {
-      labels: {
-        color: COLORS.textSecondary,
-        font: { family: "'Inter', sans-serif", size: 12 },
-        padding: 16,
-        usePointStyle: true,
+/* Registry of all created chart instances for theme updates */
+const _chartRegistry = [];
+
+/* Read a CSS custom property from the document root */
+function _cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+/* Return current theme-aware chart colors from CSS custom properties */
+function _liveColors() {
+  return {
+    text:                _cssVar('--chart-tooltip-text')            || COLORS.text,
+    textSecondary:       _cssVar('--chart-tooltip-text-secondary')  || COLORS.textSecondary,
+    tooltipBg:           _cssVar('--chart-tooltip-bg')              || '#1e2130',
+    tooltipBorder:       _cssVar('--chart-tooltip-border')          || '#2d3148',
+    gridLine:            _cssVar('--chart-grid')                    || COLORS.gridLine,
+    pieBorder:           _cssVar('--chart-pie-border')              || '#1e2130',
+  };
+}
+
+/* Build chart defaults using current theme colors */
+function _getChartDefaults() {
+  const c = _liveColors();
+  return {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
+    plugins: {
+      legend: {
+        labels: {
+          color: c.textSecondary,
+          font: { family: "'Inter', sans-serif", size: 12 },
+          padding: 16,
+          usePointStyle: true,
+        }
+      },
+      tooltip: {
+        backgroundColor: c.tooltipBg,
+        titleColor: c.text,
+        bodyColor: c.textSecondary,
+        borderColor: c.tooltipBorder,
+        borderWidth: 1,
+        cornerRadius: 8,
+        padding: 12,
+        titleFont: { family: "'Inter', sans-serif", weight: '600' },
+        bodyFont: { family: "'Inter', sans-serif" },
       }
     },
-    tooltip: {
-      backgroundColor: '#1e2130',
-      titleColor: COLORS.text,
-      bodyColor: COLORS.textSecondary,
-      borderColor: '#2d3148',
-      borderWidth: 1,
-      cornerRadius: 8,
-      padding: 12,
-      titleFont: { family: "'Inter', sans-serif", weight: '600' },
-      bodyFont: { family: "'Inter', sans-serif" },
+    scales: {
+      x: {
+        grid: { color: c.gridLine, drawBorder: false },
+        ticks: { color: c.textSecondary, font: { family: "'Inter', sans-serif", size: 11 } },
+      },
+      y: {
+        grid: { color: c.gridLine, drawBorder: false },
+        ticks: { color: c.textSecondary, font: { family: "'Inter', sans-serif", size: 11 } },
+      }
     }
-  },
-  scales: {
-    x: {
-      grid: { color: COLORS.gridLine, drawBorder: false },
-      ticks: { color: COLORS.textSecondary, font: { family: "'Inter', sans-serif", size: 11 } },
-    },
-    y: {
-      grid: { color: COLORS.gridLine, drawBorder: false },
-      ticks: { color: COLORS.textSecondary, font: { family: "'Inter', sans-serif", size: 11 } },
+  };
+}
+
+/* Alias kept for compatibility with any existing call sites */
+const CHART_DEFAULTS = _getChartDefaults();
+
+/* Update all tracked chart instances to match the current theme */
+function applyThemeToCharts() {
+  const c = _liveColors();
+  _chartRegistry.forEach(chart => {
+    if (!chart || chart.ctx === null) return; // destroyed
+
+    // Legend labels
+    if (chart.options.plugins && chart.options.plugins.legend && chart.options.plugins.legend.labels) {
+      chart.options.plugins.legend.labels.color = c.textSecondary;
     }
-  }
-};
+    // Tooltip
+    if (chart.options.plugins && chart.options.plugins.tooltip) {
+      const tt = chart.options.plugins.tooltip;
+      tt.backgroundColor = c.tooltipBg;
+      tt.titleColor = c.text;
+      tt.bodyColor = c.textSecondary;
+      tt.borderColor = c.tooltipBorder;
+    }
+    // Title
+    if (chart.options.plugins && chart.options.plugins.title && chart.options.plugins.title.display) {
+      chart.options.plugins.title.color = c.text;
+    }
+    // Scales
+    ['x', 'y'].forEach(axis => {
+      if (chart.options.scales && chart.options.scales[axis]) {
+        const scale = chart.options.scales[axis];
+        if (scale.ticks) scale.ticks.color = c.textSecondary;
+        if (scale.grid) scale.grid.color = c.gridLine;
+        if (scale.title) scale.title.color = c.textSecondary;
+      }
+    });
+    // Pie / doughnut segment border
+    if (chart.config.type === 'pie' || chart.config.type === 'doughnut') {
+      chart.data.datasets.forEach(ds => {
+        ds.borderColor = c.pieBorder;
+      });
+    }
+    chart.update('none');
+  });
+}
 
 /* Deep-merge helper */
 function mergeDeep(target, source) {
@@ -76,6 +143,7 @@ function createBarChart(canvasId, labels, data, options = {}) {
   const ctx = document.getElementById(canvasId);
   if (!ctx) return null;
 
+  const c = _liveColors();
   const config = {
     type: 'bar',
     data: {
@@ -88,13 +156,13 @@ function createBarChart(canvasId, labels, data, options = {}) {
         maxBarThickness: 60,
       }]
     },
-    options: mergeDeep(CHART_DEFAULTS, {
+    options: mergeDeep(_getChartDefaults(), {
       plugins: {
         legend: { display: options.showLegend || false },
         title: options.title ? {
           display: true,
           text: options.title,
-          color: COLORS.text,
+          color: c.text,
           font: { family: "'Inter', sans-serif", size: 14, weight: '600' },
           padding: { bottom: 16 }
         } : { display: false }
@@ -104,9 +172,9 @@ function createBarChart(canvasId, labels, data, options = {}) {
           beginAtZero: options.beginAtZero !== false,
           min: options.yMin,
           max: options.yMax,
-          grid: { color: COLORS.gridLine },
+          grid: { color: c.gridLine },
           ticks: {
-            color: COLORS.textSecondary,
+            color: c.textSecondary,
             callback: options.yFormat || undefined,
           }
         },
@@ -119,7 +187,9 @@ function createBarChart(canvasId, labels, data, options = {}) {
     })
   };
 
-  return new Chart(ctx, config);
+  const chart = new Chart(ctx, config);
+  _chartRegistry.push(chart);
+  return chart;
 }
 
 /* Create a line chart with good defaults */
@@ -127,6 +197,7 @@ function createLineChart(canvasId, labels, datasets, options = {}) {
   const ctx = document.getElementById(canvasId);
   if (!ctx) return null;
 
+  const c = _liveColors();
   const formattedDatasets = datasets.map((ds, i) => ({
     label: ds.label || `Series ${i + 1}`,
     data: ds.data,
@@ -143,13 +214,13 @@ function createLineChart(canvasId, labels, datasets, options = {}) {
   const config = {
     type: 'line',
     data: { labels, datasets: formattedDatasets },
-    options: mergeDeep(CHART_DEFAULTS, {
+    options: mergeDeep(_getChartDefaults(), {
       plugins: {
         legend: { display: datasets.length > 1 },
         title: options.title ? {
           display: true,
           text: options.title,
-          color: COLORS.text,
+          color: c.text,
           font: { family: "'Inter', sans-serif", size: 14, weight: '600' },
           padding: { bottom: 16 }
         } : { display: false }
@@ -165,7 +236,9 @@ function createLineChart(canvasId, labels, datasets, options = {}) {
     })
   };
 
-  return new Chart(ctx, config);
+  const chart = new Chart(ctx, config);
+  _chartRegistry.push(chart);
+  return chart;
 }
 
 /* Create a pie/doughnut chart */
@@ -173,6 +246,7 @@ function createPieChart(canvasId, labels, data, options = {}) {
   const ctx = document.getElementById(canvasId);
   if (!ctx) return null;
 
+  const c = _liveColors();
   const config = {
     type: options.doughnut ? 'doughnut' : 'pie',
     data: {
@@ -180,7 +254,7 @@ function createPieChart(canvasId, labels, data, options = {}) {
       datasets: [{
         data,
         backgroundColor: options.colors || COLORS.palette.slice(0, data.length),
-        borderColor: '#1e2130',
+        borderColor: c.pieBorder,
         borderWidth: 2,
       }]
     },
@@ -191,16 +265,25 @@ function createPieChart(canvasId, labels, data, options = {}) {
         legend: {
           position: 'bottom',
           labels: {
-            color: COLORS.textSecondary,
+            color: c.textSecondary,
             font: { family: "'Inter', sans-serif", size: 12 },
             padding: 16,
             usePointStyle: true,
           }
         },
+        tooltip: {
+          backgroundColor: c.tooltipBg,
+          titleColor: c.text,
+          bodyColor: c.textSecondary,
+          borderColor: c.tooltipBorder,
+          borderWidth: 1,
+          cornerRadius: 8,
+          padding: 12,
+        },
         title: options.title ? {
           display: true,
           text: options.title,
-          color: COLORS.text,
+          color: c.text,
           font: { family: "'Inter', sans-serif", size: 14, weight: '600' },
           padding: { bottom: 16 }
         } : { display: false }
@@ -208,7 +291,9 @@ function createPieChart(canvasId, labels, data, options = {}) {
     }
   };
 
-  return new Chart(ctx, config);
+  const chart = new Chart(ctx, config);
+  _chartRegistry.push(chart);
+  return chart;
 }
 
 /* Create a scatter chart */
@@ -216,6 +301,7 @@ function createScatterChart(canvasId, datasets, options = {}) {
   const ctx = document.getElementById(canvasId);
   if (!ctx) return null;
 
+  const c = _liveColors();
   const formattedDatasets = datasets.map((ds, i) => ({
     label: ds.label || `Series ${i + 1}`,
     data: ds.data,
@@ -230,13 +316,13 @@ function createScatterChart(canvasId, datasets, options = {}) {
   const config = {
     type: 'scatter',
     data: { datasets: formattedDatasets },
-    options: mergeDeep(CHART_DEFAULTS, {
+    options: mergeDeep(_getChartDefaults(), {
       plugins: {
         legend: { display: datasets.length > 1 },
         title: options.title ? {
           display: true,
           text: options.title,
-          color: COLORS.text,
+          color: c.text,
           font: { family: "'Inter', sans-serif", size: 14, weight: '600' },
           padding: { bottom: 16 }
         } : { display: false }
@@ -245,14 +331,14 @@ function createScatterChart(canvasId, datasets, options = {}) {
         x: {
           title: options.xLabel ? {
             display: true, text: options.xLabel,
-            color: COLORS.textSecondary,
+            color: c.textSecondary,
             font: { family: "'Inter', sans-serif", size: 12 }
           } : undefined,
         },
         y: {
           title: options.yLabel ? {
             display: true, text: options.yLabel,
-            color: COLORS.textSecondary,
+            color: c.textSecondary,
             font: { family: "'Inter', sans-serif", size: 12 }
           } : undefined,
         }
@@ -261,5 +347,7 @@ function createScatterChart(canvasId, datasets, options = {}) {
     })
   };
 
-  return new Chart(ctx, config);
+  const chart = new Chart(ctx, config);
+  _chartRegistry.push(chart);
+  return chart;
 }

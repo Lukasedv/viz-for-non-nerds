@@ -3,11 +3,79 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initNav();
   initCollapsibles();
   initBeforeAfter();
   initFadeIn();
 });
+
+/* --- Theme Management --- */
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+
+  // Remove no-transition class after first paint so subsequent changes animate
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('no-transition');
+    });
+  });
+
+  function getEffectiveTheme(pref) {
+    if (pref === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return pref;
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.classList.add('theme-transitioning');
+    document.documentElement.setAttribute('data-theme', theme);
+
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      btn.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    }
+
+    // Notify chart helpers to update if available
+    if (typeof applyThemeToCharts === 'function') {
+      applyThemeToCharts();
+    }
+
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 250);
+  }
+
+  function setPref(pref) {
+    localStorage.setItem('theme', pref);
+    applyTheme(getEffectiveTheme(pref));
+  }
+
+  // Set initial button icon based on current theme
+  const storedPref = localStorage.getItem('theme') || 'system';
+  const currentTheme = getEffectiveTheme(storedPref);
+  applyTheme(currentTheme);
+
+  // Toggle between light and dark on click
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const active = document.documentElement.getAttribute('data-theme');
+      setPref(active === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // React in real time to OS-level preference changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const pref = localStorage.getItem('theme') || 'system';
+    if (pref === 'system') {
+      applyTheme(getEffectiveTheme('system'));
+    }
+  });
+}
 
 /* --- Mobile Navigation --- */
 function initNav() {

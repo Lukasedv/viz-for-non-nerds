@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic 7: PowerPoint Data Visualization — Viz for Non-Nerds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">📊 <span>Viz for Non-Nerds</span></a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="topic1.html">1</a></li>
+        <li><a href="topic2.html">2</a></li>
+        <li><a href="topic3.html">3</a></li>
+        <li><a href="topic4.html">4</a></li>
+        <li><a href="topic5.html">5</a></li>
+        <li><a href="topic6.html">6</a></li>
+        <li><a href="topic7.html" class="active">7</a></li>
+        <li><a href="report.html">Report</a></li>
+        <li><a href="takeaway.html">🎤</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="container">
+      <div class="content">
+
+        <!-- Header -->
+        <div class="section-header">
+          <span class="topic-label">Topic 7</span>
+          <h1>PowerPoint Data Visualization</h1>
+          <p class="lead">PowerPoint is more powerful than you think — if you use it right. Here's how to turn slides into clear, compelling data stories.</p>
+          <blockquote>"The goal is to turn data into information, and information into insight." — Carly Fiorina</blockquote>
+        </div>
+
+        <!-- Section 1: Core Capabilities -->
+        <section class="lesson-section fade-in">
+          <h2>🛠️ PowerPoint's Visualization Toolkit</h2>
+          <p>Microsoft 365 PowerPoint ships with a surprisingly deep set of native visualization tools. You don't need a third-party plugin to build professional data slides — but you do need to know what each tool is for.</p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin:1.5rem 0;">
+            <div class="chart-container" style="border-top:3px solid var(--accent); padding:1.25rem 1.5rem;">
+              <div style="font-size:1.6rem; margin-bottom:0.5rem;">📊</div>
+              <h4 style="margin-bottom:0.4rem;">Native Charts</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Bar, line, pie, scatter, combo — powered by an embedded Excel datasheet. Insert via <code>Insert → Chart</code>.</p>
+            </div>
+            <div class="chart-container" style="border-top:3px solid var(--success); padding:1.25rem 1.5rem;">
+              <div style="font-size:1.6rem; margin-bottom:0.5rem;">🔷</div>
+              <h4 style="margin-bottom:0.4rem;">SmartArt</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Process flows, hierarchies, and relationship diagrams. Best for qualitative structure, not quantitative data.</p>
+            </div>
+            <div class="chart-container" style="border-top:3px solid var(--warning); padding:1.25rem 1.5rem;">
+              <div style="font-size:1.6rem; margin-bottom:0.5rem;">📋</div>
+              <h4 style="margin-bottom:0.4rem;">Tables</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">For precise lookup. Use sparingly — a chart almost always communicates faster than a table of numbers.</p>
+            </div>
+            <div class="chart-container" style="border-top:3px solid var(--accent-light); padding:1.25rem 1.5rem;">
+              <div style="font-size:1.6rem; margin-bottom:0.5rem;">🔶</div>
+              <h4 style="margin-bottom:0.4rem;">Icons &amp; Shapes</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">Use <code>Insert → Icons</code> (Microsoft 365) to build icon arrays or pictographs. Shapes can represent progress bars and KPI indicators.</p>
+            </div>
+          </div>
+
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              🖥️ Platform Differences: Desktop vs Web vs Mac
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ul style="margin:0; padding-left:1.25rem; color:var(--text-secondary);">
+                  <li style="margin-bottom:0.5rem;"><strong style="color:var(--text-primary);">Microsoft 365 Desktop (Windows)</strong> — Full feature set. This chapter targets this version.</li>
+                  <li style="margin-bottom:0.5rem;"><strong style="color:var(--text-primary);">Microsoft 365 Desktop (Mac)</strong> — Near-parity with Windows. <em>Morph</em> transitions and live Excel links work identically. Some right-click menus differ slightly.</li>
+                  <li style="margin-bottom:0.5rem;"><strong style="color:var(--text-primary);">PowerPoint for the Web</strong> — Reduced chart editing. You can view and present charts, but editing the embedded datasheet and chart formatting options are limited. Excel data linking is not supported.</li>
+                  <li><strong style="color:var(--text-primary);">PowerPoint 2021 (standalone)</strong> — Same as Microsoft 365 Desktop for the features covered here, without cloud-connected updates.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Chart Type Selector -->
+        <section class="lesson-section fade-in">
+          <h2>📈 Choosing the Right Chart Type</h2>
+          <p>The single most important decision in PowerPoint data viz is chart selection. Use the selector below to explore the five most common types — and when each one earns its place on a slide.</p>
+
+          <div class="steps" id="chart-type-tabs">
+            <button class="step-btn active" data-step="ct-bar"><span class="step-num">1</span> Bar</button>
+            <button class="step-btn" data-step="ct-line"><span class="step-num">2</span> Line</button>
+            <button class="step-btn" data-step="ct-pie"><span class="step-num">3</span> Pie</button>
+            <button class="step-btn" data-step="ct-scatter"><span class="step-num">4</span> Scatter</button>
+            <button class="step-btn" data-step="ct-combo"><span class="step-num">5</span> Combo</button>
+          </div>
+
+          <!-- Bar -->
+          <div id="ct-bar" class="step-content active">
+            <div class="chart-container">
+              <div class="chart-title">Bar / Column Chart</div>
+              <div class="chart-subtitle">Best for: comparing discrete categories</div>
+              <div class="chart-wrapper"><canvas id="chart-bar-demo"></canvas></div>
+              <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.85rem;">
+                <div>
+                  <p style="color:var(--success); font-weight:600; margin-bottom:0.25rem;">✅ Use when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Comparing values across categories (regions, products, teams)</li>
+                    <li>Showing rankings — sort bars descending for instant insight</li>
+                    <li>Displaying part-to-whole with a stacked bar</li>
+                  </ul>
+                </div>
+                <div>
+                  <p style="color:var(--danger); font-weight:600; margin-bottom:0.25rem;">❌ Avoid when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>You have more than ~12 categories (use a table instead)</li>
+                    <li>You're showing a trend over time (use a line chart)</li>
+                    <li>You want to show correlation (use scatter)</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.8rem; margin-top:1rem;">💡 <strong>PowerPoint tip:</strong> <code>Insert → Chart → Bar → Clustered Bar</code>. For horizontal bars (long category names), choose <em>Bar</em> instead of <em>Column</em>.</p>
+            </div>
+          </div>
+
+          <!-- Line -->
+          <div id="ct-line" class="step-content">
+            <div class="chart-container">
+              <div class="chart-title">Line Chart</div>
+              <div class="chart-subtitle">Best for: trends over continuous time</div>
+              <div class="chart-wrapper"><canvas id="chart-line-demo"></canvas></div>
+              <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.85rem;">
+                <div>
+                  <p style="color:var(--success); font-weight:600; margin-bottom:0.25rem;">✅ Use when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Showing change over time (revenue by month, users by week)</li>
+                    <li>Comparing multiple series across time</li>
+                    <li>Highlighting a trend direction more than exact values</li>
+                  </ul>
+                </div>
+                <div>
+                  <p style="color:var(--danger); font-weight:600; margin-bottom:0.25rem;">❌ Avoid when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Your x-axis is categorical, not temporal</li>
+                    <li>You have fewer than 4 time points (use bars)</li>
+                    <li>You're comparing more than 4–5 series (lines tangle)</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.8rem; margin-top:1rem;">💡 <strong>PowerPoint tip:</strong> <code>Insert → Chart → Line → Line with Markers</code>. Remove markers for cleaner trend lines when you have many data points.</p>
+            </div>
+          </div>
+
+          <!-- Pie -->
+          <div id="ct-pie" class="step-content">
+            <div class="chart-container">
+              <div class="chart-title">Pie Chart</div>
+              <div class="chart-subtitle">Best for: part-to-whole with 2–4 segments</div>
+              <div style="max-width:400px; margin:0 auto;"><div class="chart-wrapper"><canvas id="chart-pie-demo"></canvas></div></div>
+              <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.85rem;">
+                <div>
+                  <p style="color:var(--success); font-weight:600; margin-bottom:0.25rem;">✅ Use when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Showing a dominant segment (one item clearly &gt;50%)</li>
+                    <li>You have only 2–4 meaningful slices</li>
+                    <li>The "part-of-a-whole" message is the core insight</li>
+                  </ul>
+                </div>
+                <div>
+                  <p style="color:var(--danger); font-weight:600; margin-bottom:0.25rem;">❌ Avoid when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>You have 5+ slices (use a sorted bar chart)</li>
+                    <li>Values are close to each other (hard to read angles)</li>
+                    <li>You need to compare against a prior period</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.8rem; margin-top:1rem;">💡 <strong>PowerPoint tip:</strong> Never use 3D pie charts (see anti-patterns). Delete the legend; use <em>Data Callout</em> labels to show category + percentage directly on slices.</p>
+            </div>
+          </div>
+
+          <!-- Scatter -->
+          <div id="ct-scatter" class="step-content">
+            <div class="chart-container">
+              <div class="chart-title">Scatter Plot</div>
+              <div class="chart-subtitle">Best for: correlation between two numeric variables</div>
+              <div class="chart-wrapper"><canvas id="chart-scatter-demo"></canvas></div>
+              <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.85rem;">
+                <div>
+                  <p style="color:var(--success); font-weight:600; margin-bottom:0.25rem;">✅ Use when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Showing relationship or correlation between two variables</li>
+                    <li>Identifying clusters or outliers in your data</li>
+                    <li>Plotting individual entities (countries, products, customers)</li>
+                  </ul>
+                </div>
+                <div>
+                  <p style="color:var(--danger); font-weight:600; margin-bottom:0.25rem;">❌ Avoid when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Your audience isn't comfortable reading scatter plots</li>
+                    <li>You have thousands of overlapping points (overplotting)</li>
+                    <li>One axis is categorical rather than numeric</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.8rem; margin-top:1rem;">💡 <strong>PowerPoint tip:</strong> <code>Insert → Chart → X Y (Scatter)</code>. Add a trend line via <em>Chart Design → Add Chart Element → Trendline → Linear</em> to make the correlation explicit.</p>
+            </div>
+          </div>
+
+          <!-- Combo -->
+          <div id="ct-combo" class="step-content">
+            <div class="chart-container">
+              <div class="chart-title">Combo Chart (Bar + Line)</div>
+              <div class="chart-subtitle">Best for: two related metrics with different scales</div>
+              <div class="chart-wrapper"><canvas id="chart-combo-demo"></canvas></div>
+              <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.85rem;">
+                <div>
+                  <p style="color:var(--success); font-weight:600; margin-bottom:0.25rem;">✅ Use when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>Combining volume (bar) and rate (line) — e.g., revenue + margin %</li>
+                    <li>Overlaying an actual vs. target line on bar data</li>
+                    <li>Two series have very different scales requiring a secondary axis</li>
+                  </ul>
+                </div>
+                <div>
+                  <p style="color:var(--danger); font-weight:600; margin-bottom:0.25rem;">❌ Avoid when</p>
+                  <ul style="color:var(--text-secondary); padding-left:1.1rem; margin:0;">
+                    <li>A simpler chart type tells the story clearly on its own</li>
+                    <li>The dual axis confuses the message (secondary axes mislead)</li>
+                    <li>Your audience needs a quick glance, not careful reading</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.8rem; margin-top:1rem;">💡 <strong>PowerPoint tip:</strong> <code>Insert → Chart → Combo → Clustered Column – Line</code>. Right-click a series → <em>Format Data Series → Secondary Axis</em> when scales differ significantly.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Excel Data Linking -->
+        <section class="lesson-section fade-in">
+          <h2>🔗 Importing &amp; Linking Data from Excel</h2>
+          <p>There are two ways to get Excel data into a PowerPoint chart — and the difference matters for keeping your slides up to date.</p>
+
+          <div class="before-after">
+            <div class="ba-toggle">
+              <button class="ba-before active" data-target="before">📋 Embedded (Static)</button>
+              <button class="ba-after" data-target="after">🔗 Linked (Live)</button>
+            </div>
+
+            <div class="ba-chart active" data-view="before">
+              <div class="chart-container">
+                <h3 style="margin-bottom:0.75rem;">Embedded Datasheet</h3>
+                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:1rem;">When you insert a chart via <code>Insert → Chart</code>, PowerPoint creates a <strong>private copy</strong> of the data inside the .pptx file. Editing in the embedded spreadsheet updates the chart, but the data lives only in the presentation.</p>
+                <ol style="color:var(--text-secondary); font-size:0.9rem; padding-left:1.25rem; margin-bottom:1rem;">
+                  <li style="margin-bottom:0.4rem;"><strong style="color:var(--text-primary);">Click the chart</strong> to select it</li>
+                  <li style="margin-bottom:0.4rem;">Go to <strong style="color:var(--text-primary);">Chart Design → Edit Data</strong></li>
+                  <li style="margin-bottom:0.4rem;">Update numbers directly in the mini-Excel sheet that opens</li>
+                  <li>Close the sheet — the chart updates instantly</li>
+                </ol>
+                <div style="background:var(--bg-code); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem; font-size:0.82rem; color:var(--text-secondary);">
+                  <strong style="color:var(--accent-light);">When to use:</strong> One-off presentations, data that doesn't change, quick reports where you control all the numbers manually.
+                </div>
+              </div>
+            </div>
+
+            <div class="ba-chart" data-view="after">
+              <div class="chart-container">
+                <h3 style="margin-bottom:0.75rem;">Linked Excel Workbook</h3>
+                <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:1rem;">Paste a chart from Excel with <strong>Link &amp; Keep Source Formatting</strong> to maintain a live connection. When the Excel file updates, so does your PowerPoint chart.</p>
+                <ol style="color:var(--text-secondary); font-size:0.9rem; padding-left:1.25rem; margin-bottom:1rem;">
+                  <li style="margin-bottom:0.4rem;"><strong style="color:var(--text-primary);">Create and select the chart</strong> in Excel</li>
+                  <li style="margin-bottom:0.4rem;"><code>Copy</code> the chart (<kbd>Ctrl+C</kbd> / <kbd>Cmd+C</kbd>)</li>
+                  <li style="margin-bottom:0.4rem;">Switch to PowerPoint → <strong style="color:var(--text-primary);">Home → Paste → Paste Special → Paste Link → Microsoft Excel Chart Object → OK</strong></li>
+                  <li style="margin-bottom:0.4rem;">To update: <strong style="color:var(--text-primary);">File → Info → Edit Links to Files → Update Now</strong></li>
+                  <li>Share the .xlsx alongside the .pptx — the link requires file access</li>
+                </ol>
+                <div style="background:var(--bg-code); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem; font-size:0.82rem; color:var(--text-secondary);">
+                  <strong style="color:var(--success);">When to use:</strong> Recurring reports (weekly dashboards, monthly business reviews) where the data source is maintained by a team in Excel.
+                  <br><br>
+                  <strong style="color:var(--warning);">⚠️ Note:</strong> Linked charts break if the Excel file is moved or renamed. Always keep both files in the same shared folder or SharePoint library. Links are <em>not supported</em> in PowerPoint for the Web.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Visual Design Best Practices -->
+        <section class="lesson-section fade-in">
+          <h2>🎨 Visual Design Best Practices</h2>
+          <p>A technically correct chart can still fail if it's visually confusing. These four pillars of PowerPoint chart design are non-negotiable for professional-quality slides.</p>
+
+          <div style="display:grid; gap:1rem; margin:1.5rem 0;">
+
+            <div class="collapsible">
+              <button class="collapsible-toggle">
+                🎨 1. Color: One Accent + Neutral Greys
+                <span class="chevron">▼</span>
+              </button>
+              <div class="collapsible-content">
+                <div class="collapsible-inner">
+                  <p>Use a single accent color to draw attention to the most important data. Make everything else <strong>grey</strong>. This creates visual hierarchy without requiring the viewer to decode a legend.</p>
+                  <ul style="padding-left:1.25rem; color:var(--text-secondary);">
+                    <li>Accent color = the bar / line / slice that carries your message</li>
+                    <li>Grey (#9ca3b4 or similar) = all comparison bars and secondary data</li>
+                    <li>Check contrast ratios — aim for 4.5:1 against the slide background for accessibility</li>
+                    <li>Don't rely solely on red/green color differences — add patterns, labels, or shapes as additional visual cues (colorblind accessibility — ~8% of men are red-green colorblind)</li>
+                    <li>Use your organization's brand color as the accent; stay consistent across all slides</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="collapsible">
+              <button class="collapsible-toggle">
+                🔤 2. Font Sizing: 14pt Minimum, 18pt Preferred
+                <span class="chevron">▼</span>
+              </button>
+              <div class="collapsible-content">
+                <div class="collapsible-inner">
+                  <p>If someone in the back row can't read your axis label, that label doesn't exist. Font size rules for slides:</p>
+                  <ul style="padding-left:1.25rem; color:var(--text-secondary);">
+                    <li><strong style="color:var(--text-primary);">Chart title:</strong> 20–24pt, bold</li>
+                    <li><strong style="color:var(--text-primary);">Data labels (on bars/points):</strong> 14–16pt</li>
+                    <li><strong style="color:var(--text-primary);">Axis labels:</strong> 12–14pt minimum</li>
+                    <li><strong style="color:var(--text-primary);">Source / footnote:</strong> 10pt is acceptable</li>
+                    <li>Right-click the chart element → <em>Format [element]</em> → Text Options → change font size</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="collapsible">
+              <button class="collapsible-toggle">
+                🏷️ 3. Labeling: Direct Labels Beat Legends
+                <span class="chevron">▼</span>
+              </button>
+              <div class="collapsible-content">
+                <div class="collapsible-inner">
+                  <p>Legends force the reader's eye to bounce between the legend and the data. Direct labels eliminate that friction.</p>
+                  <ul style="padding-left:1.25rem; color:var(--text-secondary);">
+                    <li>Delete the legend: click it → press <kbd>Delete</kbd></li>
+                    <li>Right-click a data series → <em>Add Data Labels</em> → position them inside or at the end of bars</li>
+                    <li>For line charts: label the final point of each line with the series name</li>
+                    <li>Use the <em>Data Callout</em> label type on pie charts to show both name and percentage</li>
+                    <li>Round to 1 decimal place maximum — precision beyond that adds noise</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="collapsible">
+              <button class="collapsible-toggle">
+                📐 4. Layout: One Idea Per Slide
+                <span class="chevron">▼</span>
+              </button>
+              <div class="collapsible-content">
+                <div class="collapsible-inner">
+                  <p>Slides are not spreadsheets. The temptation to show every chart on one slide is strong — resist it. Your layout should guide the eye to a single conclusion.</p>
+                  <ul style="padding-left:1.25rem; color:var(--text-secondary);">
+                    <li>Use <strong>80% of the slide area</strong> for the chart; keep margins generous</li>
+                    <li>Place the insight headline at the top (not just a category label — tell them what to see)</li>
+                    <li>If you need 2 charts, use a 50/50 split only when they are directly comparable</li>
+                    <li>Add a source line at the bottom-left in 10pt text: <em>Source: Sales CRM, Q4 2024</em></li>
+                    <li>Remove chart borders/backgrounds that clash with the slide background</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section 5: Worked Example 1 — Sales Dashboard Slide -->
+        <section class="lesson-section fade-in">
+          <h2>🏗️ Worked Example 1: The Sales Dashboard Slide</h2>
+          <p>Let's build a complete sales performance slide end-to-end, applying all the design principles covered so far. This is what a finished dashboard looks like when you follow the rules.</p>
+
+          <div class="chart-container full-width">
+            <div class="chart-title" style="font-size:1.1rem;">Sales Performance — Q4 2024 | Revenue grew 18% driven by Enterprise</div>
+            <div class="chart-subtitle">Monthly | Microsoft 365 Desktop · Source: CRM Export, December 2024</div>
+
+            <div class="dashboard mt-2">
+              <div class="kpi-card" style="border-top:3px solid var(--accent);">
+                <div class="kpi-label">Q4 Revenue</div>
+                <div class="kpi-value">$3.1M</div>
+                <div class="kpi-change positive">▲ +18% vs Q3</div>
+              </div>
+              <div class="kpi-card" style="border-top:3px solid var(--success);">
+                <div class="kpi-label">Enterprise</div>
+                <div class="kpi-value">$1.9M</div>
+                <div class="kpi-change positive">▲ +31% vs Q3</div>
+              </div>
+              <div class="kpi-card" style="border-top:3px solid var(--warning);">
+                <div class="kpi-label">SMB</div>
+                <div class="kpi-value">$820K</div>
+                <div class="kpi-change positive">▲ +4% vs Q3</div>
+              </div>
+              <div class="kpi-card" style="border-top:3px solid var(--text-muted);">
+                <div class="kpi-label">Self-Serve</div>
+                <div class="kpi-value">$380K</div>
+                <div class="kpi-change negative">▼ −6% vs Q3</div>
+              </div>
+            </div>
+
+            <div class="dashboard dashboard-2col mt-2">
+              <div>
+                <div class="chart-wrapper">
+                  <canvas id="chart-example1-bar"></canvas>
+                </div>
+              </div>
+              <div>
+                <div class="chart-wrapper">
+                  <canvas id="chart-example1-line"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="collapsible" style="margin-top:1rem;">
+            <button class="collapsible-toggle">
+              🔨 How This Slide Was Built — Step by Step
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li><strong>Start with a Blank slide layout</strong> (<code>Home → Layout → Blank</code>) — no template boxes fighting your chart.</li>
+                  <li><strong>Write the insight title first</strong> as a text box: <em>"Revenue grew 18% driven by Enterprise"</em>. This forces you to be clear about the message before you design.</li>
+                  <li><strong>Insert a Clustered Bar chart</strong> (<code>Insert → Chart → Bar → Clustered Bar</code>). Enter segment data in the embedded sheet.</li>
+                  <li><strong>Color the Enterprise bar</strong> with your accent color. Set all other bars to grey (<code>Format Data Point → Fill → Solid Fill → grey</code>). Delete the legend.</li>
+                  <li><strong>Add data labels</strong> inside the bars (<code>Chart Design → Add Chart Element → Data Labels → Inside End</code>). Set font size to 14pt.</li>
+                  <li><strong>Delete gridlines and the Y axis</strong> — your bars are labeled, so axes add zero information.</li>
+                  <li><strong>Insert KPI text boxes</strong> at the top using shapes for the four headline metrics.</li>
+                  <li><strong>Add a source line</strong> at the bottom in 10pt muted text.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Worked Example 2 — Before/After Makeover -->
+        <section class="lesson-section fade-in">
+          <h2>✨ Worked Example 2: The Visualization Makeover</h2>
+          <p>The same market share data — presented two ways. The "Before" version uses every PowerPoint default that should be avoided. The "After" applies the principles from this chapter.</p>
+
+          <div class="before-after">
+            <div class="ba-toggle">
+              <button class="ba-before active" data-target="before">❌ Before (Default)</button>
+              <button class="ba-after" data-target="after">✅ After (Cleaned Up)</button>
+            </div>
+
+            <div class="ba-chart active" data-view="before">
+              <div class="chart-container">
+                <div class="chart-title" style="color:var(--text-secondary); font-size:0.9rem; text-transform:none; letter-spacing:0;">Market Share by Product Category</div>
+                <div class="chart-subtitle">A typical first-draft PowerPoint chart — everything wrong at once</div>
+                <div style="max-width:420px; margin:0 auto;"><div class="chart-wrapper"><canvas id="chart-makeover-before"></canvas></div></div>
+                <div style="margin-top:1rem; background:var(--danger-glow); border:1px solid var(--danger); border-radius:var(--radius-sm); padding:1rem; font-size:0.85rem; color:var(--text-secondary);">
+                  <strong style="color:var(--danger);">Problems:</strong> 3D effect distorts slice sizes · 6 slices (too many) · Legend requires eye travel · Label text too small · Neon color palette · No insight in the title
+                </div>
+              </div>
+            </div>
+
+            <div class="ba-chart" data-view="after">
+              <div class="chart-container">
+                <div class="chart-title">Software leads at 38% — Hardware declining for 3rd consecutive year</div>
+                <div class="chart-subtitle">Market share by category · FY 2024 · Source: Industry Report</div>
+                <div class="chart-wrapper"><canvas id="chart-makeover-after"></canvas></div>
+                <div style="margin-top:1rem; background:var(--accent-glow); border:1px solid var(--accent); border-radius:var(--radius-sm); padding:1rem; font-size:0.85rem; color:var(--text-secondary);">
+                  <strong style="color:var(--accent-light);">Improvements:</strong> 2D horizontal bar sorted descending · Software highlighted in accent color · Hardware highlighted in danger color · Direct data labels · Insight-driven title · No legend needed · Clean white space
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Anti-Patterns -->
+        <section class="lesson-section fade-in">
+          <h2>🚫 Common Pitfalls &amp; Anti-Patterns</h2>
+          <p>PowerPoint's defaults are designed to look impressive, not to communicate data clearly. Here are the most damaging anti-patterns — and how to fix them.</p>
+
+          <div style="display:grid; gap:0.75rem; margin:1.5rem 0;">
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">📦</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">3D Charts</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">3D perspective distorts bar heights and pie slice areas, making accurate comparison impossible. A bar that appears taller at the front of a 3D chart can actually represent a smaller value. <strong style="color:var(--text-primary);">Fix:</strong> Always use 2D chart types. No exceptions.</p>
+              </div>
+            </div>
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">🌈</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">Rainbow Color Palettes</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">Using a different color for every bar implies those categories are meaningfully different — even when they're not. Random color variation is visual noise. <strong style="color:var(--text-primary);">Fix:</strong> Use a single color for neutral bars and one accent color for the key bar.</p>
+              </div>
+            </div>
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">📏</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">Truncated Y-Axis</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">Starting a bar chart's Y-axis above zero magnifies tiny differences into seemingly massive changes. A 2% revenue increase can look like 400% growth. <strong style="color:var(--text-primary);">Fix:</strong> Bar charts must start at zero. For line charts, use judgment — but always label the actual range.</p>
+              </div>
+            </div>
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">🗑️</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">Chart Junk</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">Drop shadows, gradient fills, decorative images, heavy gridlines, outer glow effects — all of these are visual noise that fights the data. <strong style="color:var(--text-primary);">Fix:</strong> Right-click any chart element → <em>Format</em> → remove shadows, set fill to solid colors, reduce border weight.</p>
+              </div>
+            </div>
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">🥧</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">Pie Charts with 5+ Slices</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">Humans can't accurately compare angles beyond 4–5 values. A pie with 8 slices communicates nothing. <strong style="color:var(--text-primary);">Fix:</strong> Collapse small slices into an "Other" category, or switch to a sorted horizontal bar chart.</p>
+              </div>
+            </div>
+
+            <div class="chart-container" style="border-left:4px solid var(--danger); padding:1rem 1.25rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start;">
+              <span style="font-size:1.5rem;">🔀</span>
+              <div>
+                <h4 style="margin-bottom:0.3rem; color:var(--danger);">Dual Y-Axis Misuse</h4>
+                <p style="margin:0; font-size:0.87rem; color:var(--text-secondary);">A secondary axis can make any two unrelated datasets appear correlated by manipulating the scale. <strong style="color:var(--text-primary);">Fix:</strong> Only use a secondary axis when the metrics are genuinely related (volume + rate). Label both axes clearly and include the unit.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section 8: Accessibility -->
+        <section class="lesson-section fade-in">
+          <h2>♿ Making PowerPoint Charts Accessible</h2>
+          <p>Accessible slides are not just good practice — in many organizations and academic institutions they are required. These steps take under 5 minutes per chart and ensure your visualizations work for everyone.</p>
+
+          <div class="collapsible">
+            <button class="collapsible-toggle">
+              ♿ Accessibility Checklist for PowerPoint Charts
+              <span class="chevron">▼</span>
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-inner">
+                <ol>
+                  <li><h4>Add Alt Text to every chart</h4>
+                    <p>Right-click the chart → <em>Format Object → Alt Text</em>. Write a sentence describing the chart's key insight, not just its type. Example: <em>"Bar chart showing Enterprise revenue at $1.9M, 31% above Q3, as the highest of four segments."</em></p>
+                  </li>
+                  <li><h4>Don't rely on color alone</h4>
+                    <p>Add direct labels, patterns, or shapes to distinguish data series. Use the <a href="https://webaim.org/resources/contrastchecker/" style="color:var(--accent-light);" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker</a> to verify foreground/background ratios meet WCAG AA (4.5:1 for text).</p>
+                  </li>
+                  <li><h4>Use the Accessibility Checker</h4>
+                    <p><code>Review → Check Accessibility</code>. PowerPoint will flag missing alt text, poor reading order, and other issues automatically.</p>
+                  </li>
+                  <li><h4>Ensure logical reading order</h4>
+                    <p><code>Home → Arrange → Selection Pane</code> — objects are read by screen readers in bottom-to-top order in this panel. Drag to reorder: chart title first, then the chart, then footnote.</p>
+                  </li>
+                  <li><h4>Minimum font size 14pt for all chart text</h4>
+                    <p>Low-vision users and small-screen viewers need adequate text size. 12pt chart defaults are too small for projected slides.</p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 9: Key Takeaways -->
+        <section class="lesson-section fade-in">
+          <div class="takeaways">
+            <h3>🔑 Key Takeaways</h3>
+            <ul>
+              <li>Choose the chart type that answers your question — bar for comparison, line for trends, pie only for 2–4 clear slices</li>
+              <li>Link Excel charts for recurring reports; embed static data for one-off presentations</li>
+              <li>One accent color + neutral greys creates instant visual hierarchy without a legend</li>
+              <li>Never use 3D charts, rainbow palettes, or truncated Y-axes — they distort rather than clarify</li>
+              <li>Write an insight title, not a category label: <em>"Enterprise revenue up 31%"</em> not <em>"Revenue by Segment"</em></li>
+              <li>Add alt text and run the Accessibility Checker before sending any deck</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Page Navigation -->
+        <nav class="page-nav">
+          <a href="topic6.html" class="prev">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Topic 6: Narrative Structure</span>
+          </a>
+          <a href="report.html" class="next">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Full Research Report</span>
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Viz for Non-Nerds — Built for learning. <a href="report.html">Read the full research report →</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/topic7-charts.js"></script>
+</body>
+</html>

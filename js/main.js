@@ -33,10 +33,12 @@ function initTheme() {
     document.documentElement.setAttribute('data-theme', theme);
 
     if (btn) {
-      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      const isDark = theme === 'dark';
+      btn.innerHTML = `<span aria-hidden="true">${isDark ? '☀️' : '🌙'}</span>`;
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
       btn.setAttribute(
         'aria-label',
-        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+        isDark ? 'Dark mode active — switch to light mode' : 'Light mode active — switch to dark mode'
       );
     }
 

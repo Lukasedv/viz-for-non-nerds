@@ -20,9 +20,6 @@ const COLORS = {
   badPalette: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8800', '#88ff00'],
 };
 
-/* Registry of all created chart instances for theme updates */
-const _chartRegistry = [];
-
 /* Read a CSS custom property from the document root */
 function _cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -81,14 +78,20 @@ function _getChartDefaults() {
   };
 }
 
-/* Alias kept for compatibility with any existing call sites */
+/* Alias kept for compatibility with topic-specific chart files.
+ * Evaluated after the FOUC script sets the correct data-theme, so the
+ * colors are correct at page-load time. Runtime theme switches are handled
+ * by applyThemeToCharts() which iterates Chart.instances directly. */
 const CHART_DEFAULTS = _getChartDefaults();
 
-/* Update all tracked chart instances to match the current theme */
+/* Update all active Chart.js instances to match the current theme.
+ * Uses Chart.instances (Chart.js global registry) so charts created
+ * directly in topic-specific files are also updated. */
 function applyThemeToCharts() {
+  if (typeof Chart === 'undefined' || !Chart.instances) return;
   const c = _liveColors();
-  _chartRegistry.forEach(chart => {
-    if (!chart || chart.ctx === null) return; // destroyed
+  Object.values(Chart.instances).forEach(chart => {
+    if (!chart || !chart.options) return;
 
     // Legend labels
     if (chart.options.plugins && chart.options.plugins.legend && chart.options.plugins.legend.labels) {
@@ -188,7 +191,6 @@ function createBarChart(canvasId, labels, data, options = {}) {
   };
 
   const chart = new Chart(ctx, config);
-  _chartRegistry.push(chart);
   return chart;
 }
 
@@ -237,7 +239,6 @@ function createLineChart(canvasId, labels, datasets, options = {}) {
   };
 
   const chart = new Chart(ctx, config);
-  _chartRegistry.push(chart);
   return chart;
 }
 
@@ -292,7 +293,6 @@ function createPieChart(canvasId, labels, data, options = {}) {
   };
 
   const chart = new Chart(ctx, config);
-  _chartRegistry.push(chart);
   return chart;
 }
 
@@ -348,6 +348,5 @@ function createScatterChart(canvasId, datasets, options = {}) {
   };
 
   const chart = new Chart(ctx, config);
-  _chartRegistry.push(chart);
   return chart;
 }
